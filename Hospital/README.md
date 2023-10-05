@@ -1,0 +1,3 @@
+Primera parte de la implementación en Java de la gestión de la tienda hospital. En esta parte está implementada el CRUD de clientes, así como una muestra de cómo implementar la navegación de menús que se pide en el ejercicio.
+
+First part of the Java implementation of the hospital shop management. In this part the customer CRUD is implemented, as well as a sample of how to implement the menu navigation requested in the exercise.
