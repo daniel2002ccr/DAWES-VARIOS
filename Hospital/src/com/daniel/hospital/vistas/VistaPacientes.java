@@ -69,12 +69,12 @@ public class VistaPacientes {
 		System.out.println("Introduzca el id de la alergia");
 		String idAlergia = sc.nextLine();
 		System.out.println("Introduzca el historial medico");
-		sc.nextLine();
+		String historial = sc.nextLine();
 		
 
 		PacientesController pc = new PacientesController();
 
-		List<PacientesDTO> listaPacientes = pc.buscarPacientes(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, idAlergia, correoElectronico);
+		List<PacientesDTO> listaPacientes = pc.buscarPacientes(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, idAlergia, historial);
 
 		for (PacientesDTO estadoPacientes : listaPacientes) {
 			System.out.println(estadoPacientes.toString());
@@ -105,10 +105,10 @@ public class VistaPacientes {
 		String alergia = sc.nextLine();
 		
 		System.out.println("Introduzca el historial medico");
-		sc.nextLine();
+		String historial = sc.nextLine();
 		
 		PacientesController pc = new PacientesController();
-		pc.creaPaciente(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, alergia, correoElectronico);
+		pc.creaPaciente(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, alergia, historial);
 	}
 	
 	public void actualizarPaciente() throws ClassNotFoundException, SQLException {
@@ -133,11 +133,10 @@ public class VistaPacientes {
 		String correoElectronico = sc.nextLine();
 		System.out.println("Introduzca el id de la alergia");
 		String alergia = sc.nextLine();
-		sc.nextLine();
 		System.out.println("Introduzca el historial medico");
-		sc.nextLine();
+		String historial = sc.nextLine();
 		
 		PacientesController pc = new PacientesController();
-		pc.actualizaPaciente(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, alergia, correoElectronico);
+		pc.actualizaPaciente(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, alergia, historial);
 	}
 }

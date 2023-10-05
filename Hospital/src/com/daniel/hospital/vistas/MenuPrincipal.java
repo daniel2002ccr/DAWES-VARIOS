@@ -44,8 +44,8 @@ public class MenuPrincipal {
             	
             }
             if ( n == 2) {
-            	System.out.println("ahora ejecutaría la gestión de Médicos");
-            	continue;
+            	VistaMedicos vm = new VistaMedicos();
+            	vm.menuMedicos();
             }
             if ( n == 4) {
             	VistaDepartamentos vd = new VistaDepartamentos();

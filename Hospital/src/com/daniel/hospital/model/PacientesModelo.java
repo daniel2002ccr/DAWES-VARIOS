@@ -16,25 +16,26 @@ public class PacientesModelo {
 			String direccion, String telefono, String correoElectronico, String alergia, String historial)
 			throws ClassNotFoundException, SQLException {
 
-		String sql = "INSERT INTO pacientes (ID, Nombre, Apellido, FechaDeNacimiento, DNI, Direccion, Telefono, CorreoElectronico, HistoriaMedica) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, (SELECT a.id FROM alergias a WHERE a.descripcion = ?))";
+		String sql = "INSERT INTO pacientes "
+				+ " ( Nombre, Apellido, FechaDeNacimiento, DNI, Direccion, Telefono, CorreoElectronico, AlergiaID, HistoriaMedica) "
+	            + "VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT a.id FROM alergias a WHERE a.descripcion = ?), ?)";
 
-		Connection connection = DBUtils.conexionBBDD();
-		PreparedStatement ps = null;
-		Integer resultado = null;
+	    Connection connection = DBUtils.conexionBBDD();
+	    PreparedStatement ps = null;
+	    Integer resultado = null;
 
-		ps = connection.prepareStatement(sql);
+	    ps = connection.prepareStatement(sql);
 
-		ps.setInt(1, idPaciente);
-		ps.setString(2, nombre);
-		ps.setString(3, apellido);
-		ps.setString(4, fechaNac);
-		ps.setString(5, dni);
-		ps.setString(6, direccion);
-		ps.setString(7, telefono);
-		ps.setString(8, correoElectronico);
-		ps.setString(9, alergia);
-		ps.setString(10, historial);
+	    
+	    ps.setString(1, nombre);
+	    ps.setString(2, apellido);
+	    ps.setString(3, fechaNac);
+	    ps.setString(4, dni);
+	    ps.setString(5, direccion);
+	    ps.setString(6, telefono);
+	    ps.setString(7, correoElectronico);
+	    ps.setString(8, alergia); 
+	    ps.setString(9, historial); 
 
 		resultado = ps.executeUpdate();
 		connection.close();
@@ -87,8 +88,16 @@ public class PacientesModelo {
 	        String direccion, String telefono, String correoElectronico, String alergia, String historial)
 	        throws SQLException, ClassNotFoundException {
 
-	    String sql = "UPDATE pacientes SET Nombre = ?, Apellido = ?, FechaDeNacimiento = ?, DNI = ?, Direccion = ?, Telefono = ?, CorreoElectronico = ?, HistoriaMedica = ?, "
-	    		+ "AlergiaID = (SELECT a.id FROM alergias a WHERE a.descripcion = ?) WHERE ID = ?";
+		String sql = "UPDATE pacientes SET Nombre = CASE WHEN ? = '' THEN Nombre ELSE ? END, " +
+		        "Apellido = CASE WHEN ? = '' THEN Apellido ELSE ? END, " +
+		        "FechaDeNacimiento = CASE WHEN ? = '' THEN FechaDeNacimiento ELSE ? END, " +
+		        "DNI = CASE WHEN ? = '' THEN DNI ELSE ? END, " +
+		        "Direccion = CASE WHEN ? = '' THEN Direccion ELSE ? END, " +
+		        "Telefono = CASE WHEN ? = '' THEN Telefono ELSE ? END, " +
+		        "CorreoElectronico = CASE WHEN ? = '' THEN CorreoElectronico ELSE ? END, " +
+		        "HistoriaMedica = CASE WHEN ? = '' THEN HistoriaMedica ELSE ? END, " +
+		        "AlergiaID = (SELECT a.id FROM alergias a WHERE a.descripcion = ?) " +
+		        "WHERE ID = ?";
 		
 	    Connection connection = DBUtils.conexionBBDD();
 		PreparedStatement ps = null;
@@ -113,8 +122,7 @@ public class PacientesModelo {
 		ps.setString(15, historial);
 		ps.setString(16, historial);
 		ps.setString(17, alergia);
-		ps.setString(18, alergia);
-		ps.setInt(19, idPaciente);
+		ps.setInt(18, idPaciente);
 		
 		
 		resultado = ps.executeUpdate();
