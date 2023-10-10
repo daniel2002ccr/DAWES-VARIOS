@@ -53,7 +53,7 @@ public class PacientesModelo {
 		Connection conexionBBDD = DBUtils.conexionBBDD();
 		PreparedStatement ps = conexionBBDD.prepareStatement(sql);
 		
-		 ps.setString(1, "%" + idPaciente + "%");
+		 	ps.setString(1, "%" + idPaciente + "%");
 		    ps.setString(2, "%" + nombre + "%");
 		    ps.setString(3, "%" + apellido + "%");
 		    ps.setString(4, "%" + fechaNac + "%");

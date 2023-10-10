@@ -47,9 +47,17 @@ public class MenuPrincipal {
             	VistaMedicos vm = new VistaMedicos();
             	vm.menuMedicos();
             }
+            if ( n == 3) {
+            	VistaCitas vc = new VistaCitas();
+            	vc.menuCitas();
+            }
             if ( n == 4) {
             	VistaDepartamentos vd = new VistaDepartamentos();
             	vd.menuDepartamentos();
+            }
+            if ( n == 5) {
+            	VistaHistorialMedico vhc = new VistaHistorialMedico();
+            	vhc.menuHistorialMedico();
             }
             if ( n == 7) {
             	VistaFarmacia vf = new VistaFarmacia();

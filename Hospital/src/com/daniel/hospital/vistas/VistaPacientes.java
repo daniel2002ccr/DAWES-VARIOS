@@ -66,15 +66,15 @@ public class VistaPacientes {
 		String telefono = sc.nextLine();
 		System.out.println("Introduzca el correo electronico ");
 		String correoElectronico = sc.nextLine();
-		System.out.println("Introduzca el id de la alergia");
-		String idAlergia = sc.nextLine();
+		System.out.println("Introduzca la alergia");
+		String alergia = sc.nextLine();
 		System.out.println("Introduzca el historial medico");
 		String historial = sc.nextLine();
 		
 
 		PacientesController pc = new PacientesController();
 
-		List<PacientesDTO> listaPacientes = pc.buscarPacientes(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, idAlergia, historial);
+		List<PacientesDTO> listaPacientes = pc.buscarPacientes(id, nombre, apellido, fechaNac, dni, direccion, telefono, correoElectronico, alergia, historial);
 
 		for (PacientesDTO estadoPacientes : listaPacientes) {
 			System.out.println(estadoPacientes.toString());
@@ -131,7 +131,7 @@ public class VistaPacientes {
 		String telefono = sc.nextLine();
 		System.out.println("Introduzca el correo electronico ");
 		String correoElectronico = sc.nextLine();
-		System.out.println("Introduzca el id de la alergia");
+		System.out.println("Introduzca la alergia");
 		String alergia = sc.nextLine();
 		System.out.println("Introduzca el historial medico");
 		String historial = sc.nextLine();
