@@ -71,13 +71,13 @@ public class HistorialMedicoModelo {
 	}
 	public Integer actualizarHistorial (int id, String pacienteNombre, String medicoNombre, String fecha, String diagnostico, String tratamiento) throws ClassNotFoundException, SQLException{
 		
-		String sql = "UPDATE historialmedico SET "
-	            + "pacienteID = (SELECT p.id FROM pacientes p WHERE p.nombre = ?), "
-	            + "medicoID = (SELECT m.id FROM medicos m WHERE m.nombre = ?), "
-	            + "Fecha = CASE WHEN ? = '' THEN Fecha ELSE ? END, "
-	            + "Diagnostico = CASE WHEN ? = '' THEN Diagnostico ELSE ? END, "
-	            + "Tratamiento = CASE WHEN ? = '' THEN Tratamiento ELSE ? END "
-	            + "WHERE ID = ?";
+		String sql = "UPDATE historialmedico SET " +
+	             "pacienteID = IF(? = '', pacienteID, (SELECT p.id FROM pacientes p WHERE p.nombre = ?)), " +
+	             "medicoID = IF(? = '', medicoID, (SELECT m.id FROM medicos m WHERE m.nombre = ?)), " +
+	             "Fecha = CASE WHEN ? = '' THEN Fecha ELSE ? END, " +
+	             "Diagnostico = CASE WHEN ? = '' THEN Diagnostico ELSE ? END, " +
+	             "Tratamiento = CASE WHEN ? = '' THEN Tratamiento ELSE ? END " +
+	             "WHERE ID = ?;";
 		
 		Connection connection = DBUtils.conexionBBDD();
 		PreparedStatement ps = null;
@@ -86,14 +86,16 @@ public class HistorialMedicoModelo {
 ps = connection.prepareStatement(sql);
 		
 		ps.setString(1, pacienteNombre);
-		ps.setString(2, medicoNombre);
-		ps.setString(3, fecha);
-		ps.setString(4, fecha);
-		ps.setString(5, diagnostico);
-		ps.setString(6, diagnostico);
-		ps.setString(7, tratamiento);
-		ps.setString(8, tratamiento);
-		ps.setInt(9, id);
+		ps.setString(2, pacienteNombre);
+		ps.setString(3, medicoNombre);
+		ps.setString(4, medicoNombre);
+		ps.setString(5, fecha);
+		ps.setString(6, fecha);
+		ps.setString(7, diagnostico);
+		ps.setString(8, diagnostico);
+		ps.setString(9, tratamiento);
+		ps.setString(10, tratamiento);
+		ps.setInt(11, id);
 		
 		
 		resultado = ps.executeUpdate();

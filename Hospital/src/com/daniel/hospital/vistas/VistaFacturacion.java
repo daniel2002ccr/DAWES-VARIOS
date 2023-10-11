@@ -53,7 +53,7 @@ public void crearFacturacion() throws ClassNotFoundException, SQLException {
 		String nombreP = sc.nextLine();
 		System.out.println("Introduzca la fecha ");
 		String fecha = sc.nextLine();
-		System.out.println("Introduzca la fecha ");
+		System.out.println("Introduzca el monto ");
 		Float monto = sc.nextFloat();
 		sc.nextLine();
 		System.out.println("Introduzca el estado ");
@@ -73,7 +73,7 @@ public void actualizaFacturacion() throws ClassNotFoundException, SQLException {
 	String nombreP = sc.nextLine();
 	System.out.println("Introduzca la fecha ");
 	String fecha = sc.nextLine();
-	System.out.println("Introduzca la fecha ");
+	System.out.println("Introduzca el monto ");
 	Float monto = sc.nextFloat();
 	sc.nextLine();
 	System.out.println("Introduzca el estado ");

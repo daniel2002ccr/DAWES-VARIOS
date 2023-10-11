@@ -69,12 +69,13 @@ public class FacturacionModelo {
 public Integer actualizaFacturacion (int id, String pacienteNombre, String fecha, float monto, String estado)  throws ClassNotFoundException, SQLException{
 		
 		
-		String sql = "UPDATE facturacion SET "
-	            + "pacienteID = (SELECT p.id FROM pacientes p WHERE p.nombre = ?), "
-	            + "Fecha = CASE WHEN ? = '' THEN Fecha ELSE ? END, "
-	            + "Monto = CASE WHEN ? = '' THEN Monto ELSE ? END, "
-	            + "EstadoID = (SELECT e.id FROM estadofacturacion e WHERE e.estado = ?) "
-	            + "WHERE ID = ?";
+	String sql = "UPDATE facturacion SET " +
+            "pacienteID = IF(? = '', pacienteID, (SELECT p.id FROM pacientes p WHERE p.nombre = ?)), " +
+            "Fecha = CASE WHEN ? = '' THEN Fecha ELSE ? END, " +
+            "Monto = CASE WHEN ? = '' THEN Monto ELSE ? END, " +
+            "EstadoID = IF(? = '', EstadoID, (SELECT e.id FROM estadofacturacion e WHERE e.estado = ?)) " +
+            "WHERE ID = ?;";
+
 
 		
 		Connection connection = DBUtils.conexionBBDD();
@@ -84,12 +85,14 @@ public Integer actualizaFacturacion (int id, String pacienteNombre, String fecha
 		ps = connection.prepareStatement(sql);
 		
 		ps.setString(1, pacienteNombre);
-		ps.setString(2, fecha);
+		ps.setString(2, pacienteNombre);
 		ps.setString(3, fecha);
-		ps.setFloat(4, monto);
+		ps.setString(4, fecha);
 		ps.setFloat(5, monto);
-		ps.setString(6, estado);
-		ps.setInt(7, id);
+		ps.setFloat(6, monto);
+		ps.setString(7, estado);
+		ps.setString(8, estado);
+		ps.setInt(9, id);
 		
 		
 		resultado = ps.executeUpdate();
