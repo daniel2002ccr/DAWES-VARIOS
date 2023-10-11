@@ -59,6 +59,10 @@ public class MenuPrincipal {
             	VistaHistorialMedico vhc = new VistaHistorialMedico();
             	vhc.menuHistorialMedico();
             }
+            if ( n == 6) {
+            	VistaFacturacion vf = new VistaFacturacion();
+            	vf.menuFacturas();
+            }
             if ( n == 7) {
             	VistaFarmacia vf = new VistaFarmacia();
             	vf.menuFarmacia();

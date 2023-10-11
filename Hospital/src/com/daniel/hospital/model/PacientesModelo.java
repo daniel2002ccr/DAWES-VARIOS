@@ -44,46 +44,49 @@ public class PacientesModelo {
 	}
 
 	public List<PacientesDTO> buscarPaciente(int idPaciente, String nombre, String apellido, String fechaNac, String dni,
-			String direccion, String telefono, String correoElectronico, String alergia, String historial) throws ClassNotFoundException, SQLException{
-		
-		String sql = "SELECT * FROM pacientes WHERE ID LIKE ? AND Nombre LIKE ? AND Apellido LIKE ? AND FechaDeNacimiento LIKE ? AND DNI LIKE ? AND Direccion LIKE ? AND Telefono LIKE ? AND CorreoElectronico LIKE ? "
-				+ "AND AlergiaID = (SELECT a.id FROM alergias a WHERE a.descripcion LIKE ?) AND HistoriaMedica LIKE ?";
+            String direccion, String telefono, String correoElectronico, String alergiaDescripcion, String historial)
+throws ClassNotFoundException, SQLException {
 
-		
-		Connection conexionBBDD = DBUtils.conexionBBDD();
-		PreparedStatement ps = conexionBBDD.prepareStatement(sql);
-		
-		 	ps.setString(1, "%" + idPaciente + "%");
-		    ps.setString(2, "%" + nombre + "%");
-		    ps.setString(3, "%" + apellido + "%");
-		    ps.setString(4, "%" + fechaNac + "%");
-		    ps.setString(5, "%" + dni + "%");
-		    ps.setString(6, "%" + direccion + "%");
-		    ps.setString(7, "%" + telefono + "%");
-		    ps.setString(8, "%" + correoElectronico + "%");
-		    ps.setString(9, "%" + alergia + "%");
-		    ps.setString(10, "%" + historial + "%");
-//		System.out.println(ps.toString());
-		ResultSet rs = ps.executeQuery();
-		
-		List<PacientesDTO> listaPacientes = new ArrayList<>();
-		
-		while (rs.next()) {
-			listaPacientes.add(new PacientesDTO(rs.getInt("ID"),
-	                rs.getString("Nombre"),
-	                rs.getString("Apellido"),
-	                rs.getString("FechaDeNacimiento"),
-	                rs.getString("DNI"),
-	                rs.getString("Direccion"),
-	                rs.getString("Telefono"),
-	                rs.getString("CorreoElectronico"),
-	                rs.getInt("AlergiaID"),
-	                rs.getString("HistoriaMedica")));
-			
-		}
-		return listaPacientes;
-		
-	}
+String sql = "SELECT p.ID, p.Nombre, p.Apellido, p.FechaDeNacimiento, p.DNI, p.Direccion, p.Telefono, p.CorreoElectronico, " +
+"a.descripcion as AlergiaDescripcion, p.HistoriaMedica " +
+"FROM pacientes p " +
+"LEFT JOIN alergias a ON p.AlergiaID = a.id " +
+"WHERE p.ID LIKE ? AND p.Nombre LIKE ? AND p.Apellido LIKE ? AND p.FechaDeNacimiento LIKE ? AND p.DNI LIKE ? " +
+"AND p.Direccion LIKE ? AND p.Telefono LIKE ? AND p.CorreoElectronico LIKE ? " +
+"AND a.descripcion LIKE ? AND p.HistoriaMedica LIKE ?";
+
+Connection conexionBBDD = DBUtils.conexionBBDD();
+PreparedStatement ps = conexionBBDD.prepareStatement(sql);
+
+ps.setString(1, "%" + idPaciente + "%");
+ps.setString(2, "%" + nombre + "%");
+ps.setString(3, "%" + apellido + "%");
+ps.setString(4, "%" + fechaNac + "%");
+ps.setString(5, "%" + dni + "%");
+ps.setString(6, "%" + direccion + "%");
+ps.setString(7, "%" + telefono + "%");
+ps.setString(8, "%" + correoElectronico + "%");
+ps.setString(9, "%" + alergiaDescripcion + "%");
+ps.setString(10, "%" + historial + "%");
+
+ResultSet rs = ps.executeQuery();
+List<PacientesDTO> listaPacientes = new ArrayList<>();
+
+while (rs.next()) {
+listaPacientes.add(new PacientesDTO(rs.getInt("ID"),
+rs.getString("Nombre"),
+rs.getString("Apellido"),
+rs.getString("FechaDeNacimiento"),
+rs.getString("DNI"),
+rs.getString("Direccion"),
+rs.getString("Telefono"),
+rs.getString("CorreoElectronico"),
+rs.getString("AlergiaDescripcion"),  // Use the description here
+rs.getString("HistoriaMedica")));
+}
+
+return listaPacientes;
+}
 	public Integer actualizaPaciente(int idPaciente, String nombre, String apellido, String fechaNac, String dni,
 	        String direccion, String telefono, String correoElectronico, String alergia, String historial)
 	        throws SQLException, ClassNotFoundException {

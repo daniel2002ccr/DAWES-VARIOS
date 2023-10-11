@@ -37,37 +37,38 @@ public class CitasModelo {
 		return resultado;
 	
 }
-	public List<CitasDTO> buscarCita(int citaId, int pacienteId, int medicoId, String fecha, String hora, String estado) throws ClassNotFoundException, SQLException{
-		
-		
-		String sql = "SELECT * FROM citas WHERE ID LIKE ? AND PacienteID = (SELECT p.id FROM pacientes p WHERE p.nombre = ?) AND MedicoID = (SELECT m.id FROM medicos m WHERE m.nombre = ?) AND Fecha LIKE ? "
-				+ "AND Hora LIKE ? AND  EstadoID = (SELECT e.id FROM estadocitas e WHERE e.estado)";
-		
-		Connection conexionBBDD = DBUtils.conexionBBDD();
-		PreparedStatement ps = conexionBBDD.prepareStatement(sql);
-		
-		ps.setInt(1, citaId);
-		ps.setString(2, "%" + pacienteId + "%");
-	    ps.setString(3, "%" + medicoId + "%");
+	public List<CitasDTO> buscarCita(int citaId, String pacienteNombre, String medicoNombre, String fecha, String hora, String estado) throws ClassNotFoundException, SQLException {
+	    String sql = "SELECT c.ID as CitaID, p.Nombre as PacienteNombre, m.Nombre as MedicoNombre, c.Fecha, c.Hora, e.Estado " +
+	                 "FROM citas c " +
+	                 "INNER JOIN pacientes p ON c.PacienteID = p.ID " +
+	                 "INNER JOIN medicos m ON c.MedicoID = m.ID " +
+	                 "INNER JOIN estadocitas e ON c.EstadoID = e.ID " +
+	                 "WHERE c.ID LIKE ? AND p.Nombre LIKE ? AND m.Nombre LIKE ? AND c.Fecha LIKE ? AND c.Hora LIKE ? AND e.Estado LIKE ?";
+
+	    Connection conexionBBDD = DBUtils.conexionBBDD();
+	    PreparedStatement ps = conexionBBDD.prepareStatement(sql);
+
+	    // Set parameters
+	    ps.setString(1, "%" + citaId + "%");
+	    ps.setString(2, "%" + pacienteNombre + "%");
+	    ps.setString(3, "%" + medicoNombre + "%");
 	    ps.setString(4, "%" + fecha + "%");
 	    ps.setString(5, "%" + hora + "%");
 	    ps.setString(6, "%" + estado + "%");
-		
+
 	    ResultSet rs = ps.executeQuery();
 	    List<CitasDTO> listaCitas = new ArrayList<>();
-	    
+
 	    while (rs.next()) {
-	    	listaCitas.add(new CitasDTO(rs.getInt("ID"),
-	                rs.getInt("PacienteID"),
-	                rs.getInt("MedicoID"),
+	        listaCitas.add(new CitasDTO(rs.getInt("CitaID"),
+	                rs.getString("PacienteNombre"),
+	                rs.getString("MedicoNombre"),
 	                rs.getString("Fecha"),
 	                rs.getString("Hora"),
-	                rs.getString("Estado")
-	                ));
-			
-		}
-		return listaCitas;
-		
+	                rs.getString("Estado")));
+	    }
+
+	    return listaCitas;
 	}
 	public Integer actualizaCita (int citaId, String pacienteNombre, String medicoNombre, String fecha, String hora, String estado)  throws ClassNotFoundException, SQLException{
 		

@@ -1,9 +1,13 @@
 package com.daniel.hospital.vistas;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.daniel.hospital.controllers.CitasController;
+import com.daniel.hospital.controllers.HistorialMedicoController;
+import com.daniel.hospital.dtos.CitasDTO;
+import com.daniel.hospital.dtos.HistorialMedicoDTO;
 import com.daniel.hospital.utils.MiScanner;
 
 public class VistaCitas {
@@ -27,7 +31,7 @@ public class VistaCitas {
 				continue;
 			}
 			if (n == 1) {
-//				buscarPaciente();
+				buscarCitas();
 			}
 
 			if (n == 2) {
@@ -82,5 +86,29 @@ public void actualizarCita() throws ClassNotFoundException, SQLException {
 	CitasController cc = new CitasController();
 	cc.actualizarCita(id, nombreP, nombreM, fecha, hora, estado);
 	
+}
+public void buscarCitas() throws ClassNotFoundException, SQLException {
+	Scanner sc = MiScanner.getInstance();
+
+	System.out.println("Introduzca por favor el id de la cita: ");
+	Integer id = sc.nextInt();
+	sc.nextLine();
+	System.out.println("Introduzca por favor el nombre del paciente: ");
+	String nombrePaciente = sc.nextLine();
+	System.out.println("Introduzca por favor el nombre del medico ");
+	String nombreMedico = sc.nextLine();
+	System.out.println("Introduzca por favor la fecha ");
+	String fecha = sc.nextLine();
+	System.out.println("Introduzca por favor la hora ");
+	String hora = sc.nextLine();
+	System.out.println("Introduzca el estado ");
+	String estado = sc.nextLine();
+	
+	CitasController cc = new CitasController();
+	List<CitasDTO> listaCitas = cc.buscarCita(id, nombrePaciente, nombreMedico, fecha, hora, estado);
+			
+	for (CitasDTO citas : listaCitas) {
+		System.out.println(citas.toString());
+	}
 }
 }

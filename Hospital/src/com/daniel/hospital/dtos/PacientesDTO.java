@@ -10,12 +10,12 @@ public class PacientesDTO {
 	private String direccion;
 	private String telefono;
 	private String correoElectronico;
-	private int idAlergia;
+	 private String alergiaDescripcion;
 	private String historial;
 	
 	
 	public PacientesDTO(int idPaciente, String nombre, String apellido, String fechaNac, String dni, String direccion,
-			String telefono, String correoElectronico, int idAlergia, String historial) {
+			String telefono, String correoElectronico, String alergiaDescripcion, String historial) {
 		super();
 		this.idPaciente = idPaciente;
 		this.nombre = nombre;
@@ -25,7 +25,7 @@ public class PacientesDTO {
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
-		this.idAlergia = idAlergia;
+		this.alergiaDescripcion = alergiaDescripcion;
 		this.historial = historial;
 	}
 
@@ -110,13 +110,13 @@ public class PacientesDTO {
 	}
 
 
-	public int getIdAlergia() {
-		return idAlergia;
+	public String getAlergiaDescripcion() {
+		return alergiaDescripcion;
 	}
 
 
-	public void setIdAlergia(int idAlergia) {
-		this.idAlergia = idAlergia;
+	public void setAlergiaDescripcion(String alergiaDescripcion) {
+		this.alergiaDescripcion = alergiaDescripcion;
 	}
 
 
@@ -134,8 +134,8 @@ public class PacientesDTO {
 	public String toString() {
 		return "PacientesDTO [idPaciente=" + idPaciente + ", nombre=" + nombre + ", apellido=" + apellido
 				+ ", fechaNac=" + fechaNac + ", dni=" + dni + ", direccion=" + direccion + ", telefono=" + telefono
-				+ ", correoElectronico=" + correoElectronico + ", idAlergia=" + idAlergia + ", historial=" + historial
-				+ "]";
+				+ ", correoElectronico=" + correoElectronico + ", alergiaDescripcion=" + alergiaDescripcion
+				+ ", historial=" + historial + "]";
 	}
 	
 	

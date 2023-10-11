@@ -1,91 +1,76 @@
 package com.daniel.hospital.dtos;
 
 public class CitasDTO {
-
-	private int citaId;
-	private int pacienteId;
-	private int medicoId;
-	private String fecha;
-	private String hora;
-	private String estado;
 	
-	
-	public CitasDTO(int citaId, int pacienteId, int medicoId, String fecha, String hora, String estado) {
-		super();
-		this.citaId = citaId;
-		this.pacienteId = pacienteId;
-		this.medicoId = medicoId;
-		this.fecha = fecha;
-		this.hora = hora;
-		this.estado = estado;
-	}
+    private int citaId;
+    private String pacienteNombre;
+    private String medicoNombre;
+    private String fecha;
+    private String hora;
+    private String estado;
 
+    public CitasDTO(int citaId, String pacienteNombre, String medicoNombre, String fecha, String hora, String estado) {
+        this.citaId = citaId;
+        this.pacienteNombre = pacienteNombre;
+        this.medicoNombre = medicoNombre;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.estado = estado;
+    }
 
 	public int getCitaId() {
 		return citaId;
 	}
 
-
 	public void setCitaId(int citaId) {
 		this.citaId = citaId;
 	}
 
-
-	public int getPacienteId() {
-		return pacienteId;
+	public String getPacienteNombre() {
+		return pacienteNombre;
 	}
 
-
-	public void setPacienteId(int pacienteId) {
-		this.pacienteId = pacienteId;
+	public void setPacienteNombre(String pacienteNombre) {
+		this.pacienteNombre = pacienteNombre;
 	}
 
-
-	public int getMedicoId() {
-		return medicoId;
+	public String getMedicoNombre() {
+		return medicoNombre;
 	}
 
-
-	public void setMedicoId(int medicoId) {
-		this.medicoId = medicoId;
+	public void setMedicoNombre(String medicoNombre) {
+		this.medicoNombre = medicoNombre;
 	}
-
 
 	public String getFecha() {
 		return fecha;
 	}
 
-
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-
 
 	public String getHora() {
 		return hora;
 	}
 
-
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-
 
 	public String getEstado() {
 		return estado;
 	}
 
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-
 	@Override
 	public String toString() {
-		return "CitasDTO [citaId=" + citaId + ", pacienteId=" + pacienteId + ", medicoId=" + medicoId + ", fecha="
-				+ fecha + ", hora=" + hora + ", estado=" + estado + "]";
+		return "CitasDTO [citaId=" + citaId + ", pacienteNombre=" + pacienteNombre + ", medicoNombre=" + medicoNombre
+				+ ", fecha=" + fecha + ", hora=" + hora + ", estado=" + estado + "]";
 	}
-	
-	
+
+    
 }

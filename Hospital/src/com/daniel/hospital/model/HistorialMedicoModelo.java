@@ -38,36 +38,36 @@ public class HistorialMedicoModelo {
 		return resultado;
 
 	}
-	public List <HistorialMedicoDTO> buscarHistorial (int id, String pacienteNombre, String medicoNombre, String fecha, String diagnostico, String tratamiento) throws ClassNotFoundException, SQLException{
-		
-		String sql = "SELECT * FROM historialmedico WHERE ID LIKE ? AND PacienteID = (SELECT p.id FROM pacientes p WHERE p.nombre = ?) AND MedicoID = (SELECT m.id FROM medicos m WHERE m.nombre = ?) AND Fecha LIKE ? "
-				+ "AND Diagnostico LIKE ? AND  Tratamiento LIKE ?";
-		
-		Connection conexionBBDD = DBUtils.conexionBBDD();
-		PreparedStatement ps = conexionBBDD.prepareStatement(sql);
-		
-		ps.setInt(1, id);
-		ps.setString(2, "%" + pacienteNombre + "%");
+	public List<HistorialMedicoDTO> buscarHistorial(int id, String pacienteNombre, String medicoNombre, String fecha, String diagnostico, String tratamiento) throws ClassNotFoundException, SQLException {
+
+	    String sql = "SELECT hm.ID, p.Nombre as PacienteNombre, m.Nombre as MedicoNombre, hm.Fecha, hm.Diagnostico, hm.Tratamiento " +
+	                 "FROM historialmedico hm " +
+	                 "INNER JOIN pacientes p ON hm.PacienteID = p.ID " +
+	                 "INNER JOIN medicos m ON hm.MedicoID = m.ID " +
+	                 "WHERE hm.ID LIKE ? AND p.Nombre LIKE ? AND m.Nombre LIKE ? AND hm.Fecha LIKE ? AND hm.Diagnostico LIKE ? AND hm.Tratamiento LIKE ?";
+
+	    Connection conexionBBDD = DBUtils.conexionBBDD();
+	    PreparedStatement ps = conexionBBDD.prepareStatement(sql);
+
+	    ps.setInt(1, id);
+	    ps.setString(2, "%" + pacienteNombre + "%");
 	    ps.setString(3, "%" + medicoNombre + "%");
 	    ps.setString(4, "%" + fecha + "%");
 	    ps.setString(5, "%" + diagnostico + "%");
 	    ps.setString(6, "%" + tratamiento + "%");
-	    
+
 	    ResultSet rs = ps.executeQuery();
 	    List<HistorialMedicoDTO> listaHistorial = new ArrayList<>();
-	    
+
 	    while (rs.next()) {
-	    	listaHistorial.add(new HistorialMedicoDTO(rs.getInt("ID"),
-	                rs.getInt("PacienteID"),
-	                rs.getInt("MedicoID"),
+	        listaHistorial.add(new HistorialMedicoDTO(rs.getInt("ID"),
+	                rs.getString("PacienteNombre"),
+	                rs.getString("MedicoNombre"),
 	                rs.getString("Fecha"),
 	                rs.getString("Diagnostico"),
-	                rs.getString("Tratamiento")
-	                ));
-			
-		}
-		return listaHistorial;
-		
+	                rs.getString("Tratamiento")));
+	    }
+	    return listaHistorial;
 	}
 	public Integer actualizarHistorial (int id, String pacienteNombre, String medicoNombre, String fecha, String diagnostico, String tratamiento) throws ClassNotFoundException, SQLException{
 		

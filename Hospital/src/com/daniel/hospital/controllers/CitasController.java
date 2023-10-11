@@ -20,10 +20,10 @@ public class CitasController {
 		return cm.actualizaCita(citaId, pacienteNombre, medicoNombre, fecha, hora, estado);
 	}
 	
-	public List<CitasDTO> buscarCita(int citaId, int pacienteId, int medicoId, String fecha, String hora, String estado) throws ClassNotFoundException, SQLException{
+	public List<CitasDTO> buscarCita(int citaId, String pacienteNombre, String medicoNombre, String fecha, String hora, String estado) throws ClassNotFoundException, SQLException {
 		
 		CitasModelo cm = new CitasModelo();
-		return cm.buscarCita(citaId, pacienteId, medicoId, fecha, hora, estado);
+		return cm.buscarCita(citaId, pacienteNombre, medicoNombre, fecha, hora, estado);
 	}
 		
 }

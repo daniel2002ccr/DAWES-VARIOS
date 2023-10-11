@@ -1,10 +1,14 @@
 package com.daniel.hospital.vistas;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.daniel.hospital.controllers.CitasController;
+import com.daniel.hospital.controllers.DepartamentosController;
 import com.daniel.hospital.controllers.HistorialMedicoController;
+import com.daniel.hospital.dtos.DepartamentosDTO;
+import com.daniel.hospital.dtos.HistorialMedicoDTO;
 import com.daniel.hospital.utils.MiScanner;
 
 public class VistaHistorialMedico {
@@ -28,7 +32,7 @@ public class VistaHistorialMedico {
 				continue;
 			}
 			if (n == 1) {
-//				buscarPaciente();
+				buscarHistorial();
 			}
 
 			if (n == 2) {
@@ -84,5 +88,29 @@ public void actualizarHistorial() throws ClassNotFoundException, SQLException {
 	HistorialMedicoController hmc = new HistorialMedicoController();
 	hmc.actualizarHistorial(id, nombreP, nombreM, fecha, diagnostico, tratamiento);
 	
+}
+public void buscarHistorial() throws ClassNotFoundException, SQLException {
+	Scanner sc = MiScanner.getInstance();
+
+	System.out.println("Introduzca por favor el id del historial: ");
+	Integer id = sc.nextInt();
+	sc.nextLine();
+	System.out.println("Introduzca por favor el nombre del paciente: ");
+	String nombrePaciente = sc.nextLine();
+	System.out.println("Introduzca por favor el nombre del medico ");
+	String nombreMedico = sc.nextLine();
+	System.out.println("Introduzca por favor la fecha ");
+	String fecha = sc.nextLine();
+	System.out.println("Introduzca por favor el diagnostico ");
+	String diagnostico = sc.nextLine();
+	System.out.println("Introduzca el tratamiento ");
+	String tratamiento = sc.nextLine();
+	
+	HistorialMedicoController hmc = new HistorialMedicoController();
+	List<HistorialMedicoDTO> listaHistorial = hmc.buscarHistorial(id, nombrePaciente, nombreMedico, fecha, diagnostico, tratamiento);
+	
+	for (HistorialMedicoDTO historial : listaHistorial) {
+		System.out.println(historial.toString());
+	}
 }
 }
