@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns:web="https://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <description></description>
+    <display-name>DescuentoServlet</display-name>
+    <servlet-name>DescuentoServlet</servlet-name>
+    <servlet-class>com.daniel.descuento.modelo.DescuentoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DescuentoServlet</servlet-name>
+    <url-pattern>/DescuentoServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
