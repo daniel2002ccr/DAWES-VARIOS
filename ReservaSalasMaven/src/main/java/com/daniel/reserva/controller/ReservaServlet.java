@@ -6,10 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-/**
- * Servlet implementation class ReservaServlet
- */
+import com.daniel.reserva.negocio.ReservaSalas;
+
+@WebServlet("/ReservaServlet")
 public class ReservaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,17 +34,43 @@ public class ReservaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nombre = request.getParameter("Nombre");
+		response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        String nombre = request.getParameter("Nombre");
         String fechaHora = request.getParameter("Fecha");
         String duracion = request.getParameter("duracion");
-        String tipo = request.getParameter("tipo");
+        String tipoSala = request.getParameter("tipo");
 
-//        ReservaSalaService reservaSalaService = new ReservaSalaService();
-//        String mensajeReserva = reservaSalaService.realizarReserva(nombre, fechaHora, duracion, tipo);
 
-        
-//        request.setAttribute("mensaje", mensajeReserva);
-//        request.getRequestDispatcher("resultado.jsp").forward(request, response);
+        ReservaSalas reservaSalas = new ReservaSalas();
+
+        try {
+            if (reservaSalas.esFechaValida(fechaHora) && reservaSalas.esHoraEnPunto(fechaHora) &&
+                    reservaSalas.esSalaDisponible(tipoSala, fechaHora)) {
+                int codigoConfirmacion = reservaSalas.generarCodigoConfirmacion();
+                reservaSalas.guardarReservaEnArchivo(nombre + ";" + fechaHora + ";" + tipoSala);
+
+                out.println("<h1>Reserva exitosa</h1>");
+                out.println("<p>Código de confirmación: " + codigoConfirmacion + "</p>");
+            } else {
+                out.println("<h1>Error en la reserva</h1>");
+                out.println("<p>Lo sentimos, la sala no está disponible en la fecha y hora seleccionadas.</p>");
+
+                if (!reservaSalas.esSalaDisponible(tipoSala, fechaHora)) {
+                    out.println("<p>Salas alternativas disponibles: </p>");
+                    for (String alternativa : reservaSalas.buscarAlternativas(tipoSala, fechaHora)) {
+                        out.println("<p>" + alternativa + "</p>");
+                    }
+                }
+            }
+        } catch (Exception e) {
+
+            out.println("<h1>Error en la reserva</h1>");
+            out.println("<p>Ha ocurrido un error en la reserva.</p>");
+            out.println("<p>" + e.getMessage() + "</p>"); // Muestra el mensaje de la excepción
+            e.printStackTrace(); // Muestra el rastreo de la pila en el servidor (útil para depurar)
+        }
     }
 	}
 
