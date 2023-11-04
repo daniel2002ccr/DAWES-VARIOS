@@ -68,8 +68,8 @@ public class ReservaServlet extends HttpServlet {
 
             out.println("<h1>Error en la reserva</h1>");
             out.println("<p>Ha ocurrido un error en la reserva.</p>");
-            out.println("<p>" + e.getMessage() + "</p>"); // Muestra el mensaje de la excepción
-            e.printStackTrace(); // Muestra el rastreo de la pila en el servidor (útil para depurar)
+            out.println("<p>" + e.getMessage() + "</p>"); 
+            e.printStackTrace(); 
         }
     }
 	}
