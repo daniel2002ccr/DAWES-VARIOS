@@ -1,11 +1,15 @@
 package com.daniel.descuento.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+import com.daniel.descuento.dtos.DescuentosDTO;
+import com.daniel.descuento.negocio.Descuentos;
 
 @WebServlet("/calculadescuento")
 public class DescuentoServlet extends HttpServlet {
@@ -34,6 +38,18 @@ public class DescuentoServlet extends HttpServlet {
 
 		String nombre = request.getParameter("nombre");
 		
+		Descuentos d = new Descuentos();
+		Integer descuento = d.calculaDescuento(nombre);
+		
+		DescuentosDTO descuentosDTO = new DescuentosDTO(nombre, descuento);
+	
+//		request.setAttribute("descuento", descuento);
+//		request.setAttribute("nombre", nombre);
+		
+		request.setAttribute("descuento", descuentosDTO);
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/descuentovista.jsp");
+		
+		rd.forward(request, response);
 	}
 
 }

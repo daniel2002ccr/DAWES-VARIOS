@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ConsultaDatos {
+import org.springframework.stereotype.Component;
+
+@Component
+public class ConsultaDatos implements IConsultaDatos{
 
 	public Integer consultaEdad(String nombre) throws IOException {
 		
