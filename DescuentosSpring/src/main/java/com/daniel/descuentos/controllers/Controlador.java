@@ -20,6 +20,7 @@ public class Controlador {
 		
 		Integer cantidad = descuento.calculaDescuento(nombre);
 		model.addAttribute("descuento", cantidad);
+		model.addAttribute("nombre", nombre);
 		return "descuentovista";
 	}
 }

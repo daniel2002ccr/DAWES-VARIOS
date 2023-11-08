@@ -3,6 +3,7 @@ package com.daniel.descuento.negocio;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.descuento.modelo.ConsultaDatos;
@@ -11,6 +12,7 @@ import com.daniel.descuento.modelo.IConsultaDatos;
 @Component
 public class Descuentos implements IDescuentos{
 	@Autowired
+	@Qualifier("consultaBBDD")
 	IConsultaDatos consultadatos;
 	public Integer calculaDescuento(String nombre) throws IOException {
 		
