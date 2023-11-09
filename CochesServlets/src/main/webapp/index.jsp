@@ -10,6 +10,7 @@
     <form action="http://localhost:8080/CochesServlets/coches" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre">
+         <input type="submit" value="Consultar">
     </form>
 </body>
 </html>

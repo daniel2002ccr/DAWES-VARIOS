@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.daniel.coches.negocio.CochesNegocio;
+
 @WebServlet("coches")
 public class CochesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,7 +33,14 @@ public class CochesServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 
+        String nombre = request.getParameter("nombre");
+        
 
+        
+
+        
+    
 		
 	}
 
