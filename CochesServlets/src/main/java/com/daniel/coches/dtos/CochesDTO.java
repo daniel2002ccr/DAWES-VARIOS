@@ -7,10 +7,10 @@ public class CochesDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
-	private String cantidad;
+	private Integer cantidad;
 	
 	
-	public CochesDTO(String nombre, String cantidad) {
+	public CochesDTO(String nombre, Integer cantidad) {
 		super();
 		this.nombre = nombre;
 		this.cantidad = cantidad;
@@ -27,12 +27,12 @@ public class CochesDTO implements Serializable{
 	}
 
 
-	public String getCantidad() {
+	public Integer getCantidad() {
 		return cantidad;
 	}
 
 
-	public void setCantidad(String cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 	

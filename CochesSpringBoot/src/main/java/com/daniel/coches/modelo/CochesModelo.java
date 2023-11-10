@@ -8,13 +8,13 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CochesModelo {
+import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 
-	String path = Thread.currentThread().getContextClassLoader().getResource("coches.txt").getPath();
-
-	File f = new File(path);
-
+@Component
+public class CochesModelo implements ICocheModelo{
 	public List<String> buscarCoche(String nombre) throws IOException, ParseException {
+		File f = ResourceUtils.getFile("classpath:coches.txt");
 		List<String> nombres = new ArrayList<>();
 
 		BufferedReader reader = new BufferedReader(new FileReader(f));

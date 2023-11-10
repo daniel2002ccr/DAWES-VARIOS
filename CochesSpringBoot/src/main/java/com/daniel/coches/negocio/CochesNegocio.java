@@ -3,18 +3,26 @@ package com.daniel.coches.negocio;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
-import com.daniel.coches.modelo.CochesModelo;
 
-public class CochesNegocio {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+import com.daniel.coches.modelo.ICocheModelo;
+
+
+@Component
+public class CochesNegocio implements ICochesNegocio{
+
+	@Autowired
+	ICocheModelo coche;
 	public Integer obtenerNumeroCoches(String nombre) throws IOException, ParseException {
-		 CochesModelo cochesModelo = new CochesModelo();
-		 List<String> lineas = cochesModelo.buscarCoche(nombre);
+		 List<String> lineas = coche.buscarCoche(nombre);
 		 int coches = numeroCoches(lineas, nombre);
 	
 		return coches;
 	}
-	
+
 	private int numeroCoches(List <String> linea, String nombre) {
 		int contador = 0;
 		for (String lineas: linea) {

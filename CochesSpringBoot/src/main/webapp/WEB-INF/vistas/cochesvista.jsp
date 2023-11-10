@@ -8,6 +8,6 @@
 </head>
 <body>
 
-La persona ${coches.nombre} tiene ${coches.cantidad} coches.
+La persona ${nombre} tiene ${cantidad} coches.
 </body>
 </html>
