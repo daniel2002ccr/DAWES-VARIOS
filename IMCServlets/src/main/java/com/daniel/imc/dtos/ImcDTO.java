@@ -6,47 +6,29 @@ public class ImcDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String nombre;
-	private Integer altura;
-	private Integer peso;
+	private Double indice;
 	
-	
-	public ImcDTO(String nombre, Integer altura, Integer peso) {
+	public ImcDTO(String nombre, Double indice) {
 		super();
 		this.nombre = nombre;
-		this.altura = altura;
-		this.peso = peso;
+		this.indice = indice;
 	}
-
-
+	
 	public String getNombre() {
 		return nombre;
 	}
-
-
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-	public Integer getAltura() {
-		return altura;
-	}
-
-
-	public void setAltura(Integer altura) {
-		this.altura = altura;
-	}
-
-
-	public Integer getPeso() {
-		return peso;
-	}
-
-
-	public void setPeso(Integer peso) {
-		this.peso = peso;
+	
+	public Double getIndice() {
+		return indice;
 	}
 	
+	public void setIndice(Double indice) {
+		this.indice = indice;
+	}
 	
 	
 }
