@@ -2,17 +2,21 @@ package com.daniel.imc.negocio;
 
 import java.io.IOException;
 import java.text.ParseException;
-
 import java.util.List;
 
-import com.daniel.imc.modelo.ImcModelo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.daniel.imc.modelo.IMCModeloInterface;
 
 
-public class ImcNegocio {
-	
+@Component
+public class IMCNegocio implements IMCNegocioInterface{
+
+	@Autowired
+	IMCModeloInterface imc;
 	public double obtenerIMC(String nombre) throws IOException, ParseException {
-        ImcModelo imcmodelo = new ImcModelo();
-        List<String> lineas = imcmodelo.buscarNombre(nombre);
+        List<String> lineas = imc.buscarNombre(nombre);
 
 
         

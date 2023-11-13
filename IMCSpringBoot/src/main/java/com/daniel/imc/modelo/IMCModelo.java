@@ -8,15 +8,17 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImcModelo {
+import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 
-	String path = Thread.currentThread().getContextClassLoader().getResource("imc.txt").getPath();
+@Component
+public class IMCModelo implements IMCModeloInterface{
 
-	File f = new File(path);
+	
 
 	public List<String> buscarNombre(String nombre) throws IOException, ParseException {
 		List<String> nombres = new ArrayList<>();
-
+		File f = ResourceUtils.getFile("classpath:coches.txt");
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String linea;
 
