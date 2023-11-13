@@ -8,6 +8,6 @@
 </head>
 <body>
 
-La persona ${nombre} tiene de Indice de Masa Corporal ${indice}.
+La persona ${nombre} tiene de Indice de Masa Corporal ${imc}.
 </body>
 </html>
