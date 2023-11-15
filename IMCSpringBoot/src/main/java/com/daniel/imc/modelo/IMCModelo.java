@@ -18,7 +18,7 @@ public class IMCModelo implements IMCModeloInterface{
 
 	public List<String> buscarNombre(String nombre) throws IOException, ParseException {
 		List<String> nombres = new ArrayList<>();
-		File f = ResourceUtils.getFile("classpath:coches.txt");
+		File f = ResourceUtils.getFile("classpath:imc.txt");
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String linea;
 

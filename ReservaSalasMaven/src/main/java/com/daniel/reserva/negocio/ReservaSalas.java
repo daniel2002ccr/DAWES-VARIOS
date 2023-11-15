@@ -27,9 +27,9 @@ public class ReservaSalas {
 	}
 	
 	public boolean esHoraEnPunto(String fechaHora) {
-		 LocalDateTime localDateTime = LocalDateTime.parse(fechaHora);
+		 LocalDateTime ldt = LocalDateTime.parse(fechaHora);
 	        
-	        if (localDateTime.getMinute() != 0) {
+	        if (ldt.getMinute() != 0) {
 	            System.out.println("La hora debe ser en punto");
 	            return false;
 	        }
