@@ -1,9 +1,6 @@
-package com.daniel.foreach.bean;
+package com.daniel.foreachapp.bean;
 
 import java.io.Serializable;
-
-import org.springframework.stereotype.Component;
-
 
 public class Persona implements Serializable{
 
