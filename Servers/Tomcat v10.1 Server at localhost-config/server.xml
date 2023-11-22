@@ -37,6 +37,8 @@
          UserDatabaseRealm to authenticate users
     -->
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
+  
+  <Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" global="jdbc/MyDB" maxActive="100" maxIdle="20" maxWait="10000" minIdle="5" name="jdbc/MyDB" password="PracticaRoot" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/colegio?serverTimezone=UTC" username="root"/>
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share
@@ -140,7 +142,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="IMCServlets" path="/IMCServlets" reloadable="true" source="org.eclipse.jst.jee.server:IMCServlets"/><Context docBase="CochesServlets" path="/CochesServlets" reloadable="true" source="org.eclipse.jst.jee.server:CochesServlets"/></Host>
+      <Context docBase="IMCServlets" path="/IMCServlets" reloadable="true" source="org.eclipse.jst.jee.server:IMCServlets"/><Context docBase="CochesServlets" path="/CochesServlets" reloadable="true" source="org.eclipse.jst.jee.server:CochesServlets"/><Context docBase="jdbc" path="/colegio" reloadable="true" source="org.eclipse.jst.jee.server:jdbc"/></Host>
     </Engine>
   </Service>
 </Server>
