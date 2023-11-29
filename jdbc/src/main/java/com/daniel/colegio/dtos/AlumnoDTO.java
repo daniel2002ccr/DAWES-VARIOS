@@ -6,12 +6,30 @@ public class AlumnoDTO {
 	private String nombre;
 	private String apellido;
 	private String municipio;
+	private Integer idMunicipio;
+	private Integer famNumerosa;
+	private Integer activo;
+
+
+
+	public AlumnoDTO(Integer id, String nombre, String apellido, String municipio, Integer idMunicipio,
+			Integer famNumerosa, Integer activo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.municipio = municipio;
+		this.idMunicipio = idMunicipio;
+		this.famNumerosa = famNumerosa;
+		this.activo = activo;
+	}
 
 	public AlumnoDTO(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
+
 	public AlumnoDTO(Integer id, String nombre, String apellido, String municipio) {
 		super();
 		this.id = id;
@@ -52,4 +70,29 @@ public class AlumnoDTO {
 		this.municipio = municipio;
 	}
 
+	public Integer getFamNumerosa() {
+		return famNumerosa;
+	}
+
+	public void setFamNumerosa(Integer famNumerosa) {
+		this.famNumerosa = famNumerosa;
+	}
+
+	public Integer getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Integer activo) {
+		this.activo = activo;
+	}
+
+	public Integer getIdMunicipio() {
+		return idMunicipio;
+	}
+
+	public void setIdMunicipio(Integer idMunicipio) {
+		this.idMunicipio = idMunicipio;
+	}
+
+	
 }

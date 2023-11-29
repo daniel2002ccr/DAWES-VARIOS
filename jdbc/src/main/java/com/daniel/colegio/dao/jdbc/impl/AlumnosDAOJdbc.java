@@ -42,7 +42,7 @@ public class AlumnosDAOJdbc implements AlumnosDAO{
 	public List<AlumnoDTO> buscarAlumnos(String id, String nombre, String apellido, String activo, String famNumerosa) throws SQLException, ClassNotFoundException, NamingException{
 
 		
-		String sql = " SELECT a.id, a.nombre, a.apellidos, m.nombre "
+		String sql = " SELECT a.id, a.nombre, a.apellidos, m.nombre, a.id_municipio, a.familia_numerosa, a.activo"
 				+ " FROM alumnos a "
 				+ " INNER JOIN municipios m "
 				+ " ON a.id_municipio = m.id_municipio "
@@ -63,9 +63,32 @@ public class AlumnosDAOJdbc implements AlumnosDAO{
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			listaAlumnos.add(new AlumnoDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+			listaAlumnos.add(new AlumnoDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7)));
 		}
+		c.close();
 		return listaAlumnos;
+	}
+
+	@Override
+	public Integer insertarAlumno(String id, String nombre, String apellido, String activo, String famNumerosa,
+			String municipios) throws SQLException, ClassNotFoundException, NamingException {
+		
+		String sql = " INSERT INTO alumnos (id, nombre, apellidos, id_municipio, familia_numerosa, activo) VALUES (?, ?, ?, ?, ?, ?)";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		ps.setString(2, nombre);
+		ps.setString(3, apellido);
+		ps.setString(4, municipios);
+		ps.setString(5, famNumerosa);
+		ps.setString(6, activo);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		
+		return resultado;
 	}
 
 }

@@ -43,6 +43,10 @@
 			</form>
 		</div>
 
+<c:if test="${resultado == 1 }">
+
+ <p>Alumno insertado correctamente.</p>
+</c:if>
 	</div>
 </body>
 </html>

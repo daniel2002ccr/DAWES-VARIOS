@@ -16,6 +16,7 @@ import javax.naming.NamingException;
 import com.daniel.colegio.dao.ICombosDAO;
 import com.daniel.colegio.dao.jdbc.impl.CombosDAOImpl;
 import com.daniel.colegio.dtos.ComboDTO;
+import com.daniel.colegio.negocio.impl.AlumnosServicio;
 
 @WebServlet("/alumnos/insertaralumnos")
 public class InsertarAlumnosController extends HttpServlet {
@@ -53,8 +54,26 @@ public class InsertarAlumnosController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		Integer resultado = 0;
+		String id = request.getParameter("id");
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		
+		String activo = request.getParameter("activo");
+		String famNumerosa = request.getParameter("famNumerosa");
+		String municipios = request.getParameter("municipios");
+		
+		famNumerosa = (famNumerosa != null) ? "1":"0";
+		activo = (activo != null) ? "1":"0";
+		
+		 try {
+			resultado = new AlumnosServicio().insertarAlumno(id, nombre, apellido, activo, famNumerosa, municipios);
+		} catch (ClassNotFoundException | SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		 request.setAttribute("resultado", resultado);
+		 doGet(request, response);
+}
 }

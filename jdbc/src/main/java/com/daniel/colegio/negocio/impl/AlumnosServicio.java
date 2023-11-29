@@ -24,4 +24,11 @@ public class AlumnosServicio implements IAlumnosServicio{
 		return new AlumnosDAOJdbc().buscarAlumnos(id, nombre, apellido, activo, famNumerosa);
 	}
 
+	@Override
+	public Integer insertarAlumno(String id, String nombre, String apellido, String activo, String famNumerosa,
+			String municipios) throws SQLException, ClassNotFoundException, NamingException {
+		
+		return new AlumnosDAOJdbc().insertarAlumno(id, nombre, apellido, activo, famNumerosa, municipios);
+	}
+
 }
