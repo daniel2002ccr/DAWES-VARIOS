@@ -1,0 +1,13 @@
+<html>
+<body>
+	<h2>Calcule su descuento</h2>
+
+	<form
+		action="http://localhost:8080/DescuentosServlets/calculadescuento"
+		method="post">
+
+		<input type="text" name="nombre"> <input type="submit"
+			value="Enviar">
+	</form>
+</body>
+</html>

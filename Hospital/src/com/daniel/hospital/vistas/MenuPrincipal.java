@@ -41,35 +41,54 @@ public class MenuPrincipal {
             if ( n == 1) {
             	VistaPacientes vp = new VistaPacientes();
             	vp.menuPacientes();
+            	continue;
             	
             }
             if ( n == 2) {
             	VistaMedicos vm = new VistaMedicos();
             	vm.menuMedicos();
+            	continue;
             }
             if ( n == 3) {
             	VistaCitas vc = new VistaCitas();
             	vc.menuCitas();
+            	continue;
             }
             if ( n == 4) {
             	VistaDepartamentos vd = new VistaDepartamentos();
             	vd.menuDepartamentos();
+            	continue;
             }
             if ( n == 5) {
             	VistaHistorialMedico vhc = new VistaHistorialMedico();
             	vhc.menuHistorialMedico();
+            	continue;
             }
             if ( n == 6) {
             	VistaFacturacion vf = new VistaFacturacion();
             	vf.menuFacturas();
+            	continue;
             }
             if ( n == 7) {
             	VistaFarmacia vf = new VistaFarmacia();
             	vf.menuFarmacia();
+            	continue;
+            }
+            if ( n == 8) {
+            	VistaRecetasMedicas vrm = new VistaRecetasMedicas();
+            	vrm.menuRecetas();
+            	continue;
             }
             if ( n == 9) {
             	VistaHabitacion vh = new VistaHabitacion();
             	vh.menuHabitacion();
+            	continue;
+            }
+            if ( n == 10) {
+            	VistaAdmisiones va = new VistaAdmisiones();
+            	va.menuAdmision();
+            	continue;
+            	
             }
             
             if ( n == 11) {
@@ -80,10 +99,12 @@ public class MenuPrincipal {
             if ( n == 12) {
             	VistaEstadoCitas vec = new VistaEstadoCitas();
             	vec.menuEstadoCitas();
+            	continue;
             }
             if ( n == 13) {
             	VistaEstadoFacturacion vef = new VistaEstadoFacturacion();
             	vef.menuEstadoFacturacion();
+            	continue;
             }
 
             if (n == 14) {

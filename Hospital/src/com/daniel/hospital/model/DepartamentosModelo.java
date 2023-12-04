@@ -90,7 +90,7 @@ public class DepartamentosModelo {
 		
 		ps.setInt(6, idDepartamento);
 		
-		System.out.println(ps.toString());
+//		System.out.println(ps.toString());
 		resultado = ps.executeUpdate();
 		
 		

@@ -91,16 +91,17 @@ return listaPacientes;
 	        String direccion, String telefono, String correoElectronico, String alergia, String historial)
 	        throws SQLException, ClassNotFoundException {
 
-		String sql = "UPDATE pacientes SET Nombre = CASE WHEN ? = '' THEN Nombre ELSE ? END, " +
-		        "Apellido = CASE WHEN ? = '' THEN Apellido ELSE ? END, " +
-		        "FechaDeNacimiento = CASE WHEN ? = '' THEN FechaDeNacimiento ELSE ? END, " +
-		        "DNI = CASE WHEN ? = '' THEN DNI ELSE ? END, " +
-		        "Direccion = CASE WHEN ? = '' THEN Direccion ELSE ? END, " +
-		        "Telefono = CASE WHEN ? = '' THEN Telefono ELSE ? END, " +
-		        "CorreoElectronico = CASE WHEN ? = '' THEN CorreoElectronico ELSE ? END, " +
-		        "HistoriaMedica = CASE WHEN ? = '' THEN HistoriaMedica ELSE ? END, " +
-		        "AlergiaID = (SELECT a.id FROM alergias a WHERE a.descripcion = ?) " +
-		        "WHERE ID = ?";
+		String sql = "UPDATE pacientes "
+	            + "SET Nombre = CASE WHEN ? = '' THEN Nombre ELSE ? END, "
+	            + "    Apellido = CASE WHEN ? = '' THEN Apellido ELSE ? END, "
+	            + "    FechaDeNacimiento = CASE WHEN ? = '' THEN FechaDeNacimiento ELSE ? END, "
+	            + "    DNI = CASE WHEN ? = '' THEN DNI ELSE ? END, "
+	            + "    Direccion = CASE WHEN ? = '' THEN Direccion ELSE ? END, "
+	            + "    Telefono = CASE WHEN ? = '' THEN Telefono ELSE ? END, "
+	            + "    CorreoElectronico = CASE WHEN ? = '' THEN CorreoElectronico ELSE ? END, "
+	            + "    HistoriaMedica = CASE WHEN ? = '' THEN HistoriaMedica ELSE ? END, "
+	            + "    AlergiaID = IF(? = '', AlergiaID, (SELECT a.id FROM alergias a WHERE a.descripcion = ?)) "
+	            + "WHERE ID = ?;";
 		
 	    Connection connection = DBUtils.conexionBBDD();
 		PreparedStatement ps = null;
@@ -122,10 +123,11 @@ return listaPacientes;
 		ps.setString(12, telefono);
 		ps.setString(13, correoElectronico);
 		ps.setString(14, correoElectronico);
-		ps.setString(15, historial);
-		ps.setString(16, historial);
-		ps.setString(17, alergia);
-		ps.setInt(18, idPaciente);
+		ps.setString(15, alergia);
+		ps.setString(16, alergia);
+		ps.setString(17, historial);
+		ps.setString(18, historial);
+		ps.setInt(19, idPaciente);
 		
 		
 		resultado = ps.executeUpdate();

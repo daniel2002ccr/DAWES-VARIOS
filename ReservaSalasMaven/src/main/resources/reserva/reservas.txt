@@ -1,0 +1,3 @@
+Juan Pérez;2023-12-21T10:00;Sala de Juntas
+Maria López;2023-04-22T14:00;Sala de Conferencias
+Paco Vega;2023-12-13T10:00;Sala de Juntas

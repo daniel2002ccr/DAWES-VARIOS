@@ -48,7 +48,7 @@ public class CitasModelo {
 	    Connection conexionBBDD = DBUtils.conexionBBDD();
 	    PreparedStatement ps = conexionBBDD.prepareStatement(sql);
 
-	    // Set parameters
+	  
 	    ps.setString(1, "%" + citaId + "%");
 	    ps.setString(2, "%" + pacienteNombre + "%");
 	    ps.setString(3, "%" + medicoNombre + "%");
@@ -73,13 +73,13 @@ public class CitasModelo {
 	public Integer actualizaCita (int citaId, String pacienteNombre, String medicoNombre, String fecha, String hora, String estado)  throws ClassNotFoundException, SQLException{
 		
 		
-		String sql = "UPDATE citas SET "
-	            + "pacienteID = (SELECT p.id FROM pacientes p WHERE p.nombre = ?), "
-	            + "medicoID = (SELECT m.id FROM medicos m WHERE m.nombre = ?), "
-	            + "Fecha = CASE WHEN ? = '' THEN Fecha ELSE ? END, "
-	            + "Hora = CASE WHEN ? = '' THEN Hora ELSE ? END, "
-	            + "EstadoID = (SELECT e.id FROM estadocitas e WHERE e.estado = ?) "
-	            + "WHERE ID = ?";
+		String sql = "UPDATE citas SET " +
+	             "pacienteID = IF(? = '', pacienteID, (SELECT p.id FROM pacientes p WHERE p.nombre = ?)), " +
+	             "medicoID = IF(? = '', medicoID, (SELECT m.id FROM medicos m WHERE m.nombre = ?)), " +
+	             "Fecha = CASE WHEN ? = '' THEN Fecha ELSE ? END, " +
+	             "Hora = CASE WHEN ? = '' THEN Hora ELSE ? END, " +
+	             "EstadoID = IF(? = '', EstadoID, (SELECT e.id FROM estadocitas e WHERE e.estado = ?)) " +
+	             "WHERE ID = ?;";
 
 		
 		Connection connection = DBUtils.conexionBBDD();
@@ -89,13 +89,16 @@ public class CitasModelo {
 		ps = connection.prepareStatement(sql);
 		
 		ps.setString(1, pacienteNombre);
-		ps.setString(2, medicoNombre);
-		ps.setString(3, fecha);
-		ps.setString(4, fecha);
-		ps.setString(5, hora);
-		ps.setString(6, hora);
-		ps.setString(7, estado);
-		ps.setInt(8, citaId);
+		ps.setString(2, pacienteNombre);
+		ps.setString(3, medicoNombre);
+		ps.setString(4, medicoNombre);
+		ps.setString(5, fecha);
+		ps.setString(6, fecha);
+		ps.setString(7, hora);
+		ps.setString(8, hora);
+		ps.setString(9, estado);
+		ps.setString(10, estado);
+		ps.setInt(11, citaId);
 		
 		
 		resultado = ps.executeUpdate();
