@@ -19,14 +19,14 @@ import com.daniel.colegio.dtos.AlumnoDTO;
 import com.daniel.colegio.dtos.ComboDTO;
 import com.daniel.colegio.negocio.impl.AlumnosServicio;
 
-@WebServlet("/alumnos/formularioactualizaralumnos")
-public class FormularioActualizarAlumnosController extends HttpServlet {
+@WebServlet("/alumnos/formularioborraralumnos")
+public class FormularioBorrarAlumnosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FormularioActualizarAlumnosController() {
+	public FormularioBorrarAlumnosController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,7 +37,7 @@ public class FormularioActualizarAlumnosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/actualizarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/borrarAlumnos.jsp");
 		d.forward(request, response);
 	}
 
@@ -80,7 +80,7 @@ public class FormularioActualizarAlumnosController extends HttpServlet {
 
 		request.setAttribute("lista", listaAlumnos);
 
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/actualizarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/borrarAlumnos.jsp");
 		d.forward(request, response);
 	}
 

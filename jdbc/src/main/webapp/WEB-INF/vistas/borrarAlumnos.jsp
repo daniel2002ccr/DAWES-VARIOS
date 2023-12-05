@@ -71,7 +71,7 @@
 
 				<form
 
-					action="http://localhost:8080/colegio/alumnos/actualizaralumnos"
+					action="http://localhost:8080/colegio/alumnos/borraralumnos"
 
 					method="POST">
 

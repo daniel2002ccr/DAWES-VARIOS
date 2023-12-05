@@ -10,16 +10,15 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
-import com.daniel.colegio.controlador.ControladorPruebaConexionBBDD;
 import com.daniel.colegio.dao.AlumnosDAO;
 import com.daniel.colegio.dtos.AlumnoDTO;
 import com.daniel.colegio.utils.DBUtils;
 
+@Component
 public class AlumnosDAOJdbc implements AlumnosDAO{
-	private static final Logger logger = LoggerFactory.getLogger(ControladorPruebaConexionBBDD.class);
+//	private static final Logger logger = LoggerFactory.getLogger(ControladorPruebaConexionBBDD.class);
     
 	@Override
 	public List<AlumnoDTO> obtenerTodosAlumnos() throws SQLException, ClassNotFoundException, NamingException {
@@ -33,7 +32,7 @@ public class AlumnosDAOJdbc implements AlumnosDAO{
 		
 		while(alumnosResultSet.next()) {
 			listaAlumnos.add(new AlumnoDTO(alumnosResultSet.getInt(1), alumnosResultSet.getString(2)));
-			logger.info("Añadido el fokin alumno " + alumnosResultSet.getInt(1) + " " + alumnosResultSet.getString(2));
+//			logger.info("Añadido el fokin alumno " + alumnosResultSet.getInt(1) + " " + alumnosResultSet.getString(2));
 		}
 		return listaAlumnos;
 	}

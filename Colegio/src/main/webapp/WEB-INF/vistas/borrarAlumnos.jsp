@@ -38,7 +38,7 @@
 
 			<form
 
-				action="http://localhost:8080/colegio/alumnos/formularioactualizaralumnos"
+				action="http://localhost:8080/colegio/alumnos/formularioborraralumnos"
 
 				method="POST">
 
@@ -71,7 +71,7 @@
 
 				<form
 
-					action="http://localhost:8080/colegio/alumnos/actualizaralumnos"
+					action="http://localhost:8080/colegio/alumnos/borraralumnos"
 
 					method="POST">
 
@@ -128,7 +128,7 @@
 	<option value="${alumno.idMunicipio}" selected>${alumno.municipio}</option>
 	</select>
 				
-				<input type="submit" value="Modificar">
+				<input type="submit" value="Borrar">
 				</form>
 			</div>
 
