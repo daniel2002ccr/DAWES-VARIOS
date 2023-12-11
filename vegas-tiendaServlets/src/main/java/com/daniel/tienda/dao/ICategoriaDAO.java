@@ -12,4 +12,8 @@ import com.daniel.tienda.dtos.CategoriaDTO;
 public interface ICategoriaDAO {
 
 	public List<CategoriaDTO> buscarCategoria(String id, String nombre, String descripcion, String activo) throws SQLException, ClassNotFoundException, NamingException;
+	public Integer insertarCategoria(String nombre, String descripcion, String activo)throws SQLException, ClassNotFoundException, NamingException;
+	public Integer actualizarCategoria(String id, String nombre, String descripcion, String activo)throws SQLException, ClassNotFoundException, NamingException;
+	public Integer borrarCategoria(String id)throws SQLException, ClassNotFoundException, NamingException;
+	
 }

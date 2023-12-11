@@ -1,4 +1,4 @@
-package com.daniel.tienda.controlador;
+package com.daniel.tienda.controlador.listar;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

@@ -18,5 +18,25 @@ public class CategoriaServicio implements ICategoriaServicio{
 		return new CategoriaDAOJdbc().buscarCategoria(id, nombre, descripcion, activo);
 	}
 
+	@Override
+	public Integer insertarCategoria(String nombre, String descripcion, String activo)
+			throws SQLException, ClassNotFoundException, NamingException {
+		
+		return new CategoriaDAOJdbc().insertarCategoria(nombre, descripcion, activo);
+	}
+
+	@Override
+	public Integer actualizarCategoria(String id, String nombre, String descripcion, String activo)
+			throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return new CategoriaDAOJdbc().actualizarCategoria(id, nombre, descripcion, activo);
+	}
+
+	@Override
+	public Integer borrarCategoria(String id) throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

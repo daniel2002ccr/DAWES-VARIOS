@@ -22,9 +22,9 @@
 <div class = "container">
 
 	<div class = "form">
-		<form action="http://localhost:8080/colegio/alumnos/listaralumnos" method = "post">
+		<form action="http://localhost:8080/tienda/categoria/listadocategorias" method = "post">
 		
-			<label for = "id">ID alumno</label>
+			<label for = "id">ID categoria</label>
 			<input type="text" id="id" name="id">
 			<label for = "nombre">Nombre</label>
 			<input type="text" id="nombre" name="nombre">
@@ -47,12 +47,12 @@
 		<th>Activo</th>
 		</tr>
 		
-		<c:forEach items="${lista}" var="alumno">
+		<c:forEach items="${lista}" var="tienda">
 			<tr>
-				<td>${alumno.id}</td>
-				<td>${alumno.nombre}</td>
-				<td>${alumno.descripcion}</td>
-				<td>${alumno.activo}</td>
+				<td>${tienda.id}</td>
+				<td>${tienda.nombre}</td>
+				<td>${tienda.descripcion}</td>
+				<td>${tienda.activo}</td>
 			</tr>
 		</c:forEach>
 	</table>
