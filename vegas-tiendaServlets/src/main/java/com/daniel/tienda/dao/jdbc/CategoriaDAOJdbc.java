@@ -64,7 +64,7 @@ public class CategoriaDAOJdbc implements ICategoriaDAO {
 	@Override
 	public Integer actualizarCategoria(String id, String nombre, String descripcion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
-			String sql = " UPDATE categorias SET nombre = ?, descripcion = ?, activo = ?, WHERE ID_Categoria = ?";
+			String sql = " UPDATE categorias SET nombre = ?, descripcion = ?, activo = ? WHERE ID_Categoria = ?";
 			
 			Connection c = DBUtils.conectaBBDD();
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -82,8 +82,16 @@ public class CategoriaDAOJdbc implements ICategoriaDAO {
 
 	@Override
 	public Integer borrarCategoria(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = " UPDATE categorias SET activo = 0 WHERE ID_Categoria = ?";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
 	}
 
 }

@@ -35,7 +35,7 @@ public class CategoriaServicio implements ICategoriaServicio{
 	@Override
 	public Integer borrarCategoria(String id) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return new CategoriaDAOJdbc().borrarCategoria(id);
 	}
 
 	

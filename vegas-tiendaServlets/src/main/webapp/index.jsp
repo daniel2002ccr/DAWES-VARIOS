@@ -10,7 +10,7 @@
 </head>
 <body>
 <header>
-<h2>Gestión de Colegio</h2>
+<h2>Gestión de Tiendas</h2>
 </header>
 <%@include file="menu.html" %>
 

@@ -38,17 +38,18 @@
 
 			<form
 
-				action="http://localhost:8080/tienda/categoria/formularioactualizarcategorias"
+				action="http://localhost:8080/tienda/categoria/formularioborrarcategoria"
 
 				method="POST">
 
 				<label for="id">ID</label> 
 				<input type="text" id="id" name="id"> 
-				<label for="nombre"> Nombre</label> 
+				<label for="nombre">Nombre</label>
 				<input type="text" id="nombre" name="nombre"> 
-				<label for="descripcion"> Descripcion </label>
-				<input type="text" id="descripcion" name="descripcion"> 
-				<label for="activo"> Activo </label> <input type="checkbox" id="activo" name="activo"> 
+				<label for="descripcion">Descripcion</label>
+				<input type="text" id="descripcion" name="descripcion">
+				<label for="activo"> Activo</label> 
+				<input type="checkbox" id="activo" name="activo"> 
 				<input type="submit" value="Enviar">
 
 			</form>
@@ -62,37 +63,36 @@
 
 				<form
 
-					action="http://localhost:8080/tienda/categoria/actualizarcategoria"
+					action="http://localhost:8080/tienda/categoria/borrarcategoria"
 
 					method="POST">
 
 					
 					<label for="id">ID</label> 
-				<input type="text" id="id" name="id" value="${categoria.id}"> 
-				<label for="nombre"> Nombre</label> 
-				<input type="text" id="nombre" name="nombre" value="${categoria.nombre}"> 
-				<label for="descripcion"> Descripcion </label>
-				<input type="text" id="descripcion" name="descripcion" value="${categoria.descripcion}"> 
-				
-
+					<input type="text" id="id" name="id" value="${categoria.id}"> 
+					<label for="nombre">Nombre</label> 
+					<input type="text" id="nombre" name="nombre" value="${categoria.nombre}">
+					<label for="descripcion">Descripcion</label> 
+					<input type="text" id="descripcion" name="descripcion" value="${categoria.descripcion}">
 					<label for="activo"> Activo </label>
 
 					<c:if test="${categoria.activo == 1}">
+
 						<input type="checkbox" id="activo" name="activo" checked>
+
 					</c:if>
+
 					<c:if test="${categoria.activo == 0}">
+
 						<input type="checkbox" id="activo" name="activo">
+
 					</c:if>
-					<input type="submit" value="Modificar">
+				<input type="submit" value="Borrar">
 				</form>
 			</div>
 
 		</c:forEach>
 
-<c:if test="${resultado == 1 }">
-
- <p>Categoria insertada correctamente.</p>
-</c:if>
 	</div>
 
 </body>
