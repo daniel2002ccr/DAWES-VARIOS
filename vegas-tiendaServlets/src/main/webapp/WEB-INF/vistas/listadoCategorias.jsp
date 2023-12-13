@@ -7,7 +7,7 @@
 <html>
 <head>
 	 <link rel="stylesheet" href="../css/index.css">
-	 <link rel="stylesheet" href="../css/formulario.css">
+	 <link rel="stylesheet" href="../css/formularios.css">
 	 <link rel="stylesheet" href="../css/tablas.css">
 	 
 </head>
