@@ -92,7 +92,10 @@
 			</div>
 
 		</c:forEach>
+<c:if test="${resultado == 1 }">
 
+<p>Categoria borrada correctamente.</p>
+</c:if>
 	</div>
 
 </body>

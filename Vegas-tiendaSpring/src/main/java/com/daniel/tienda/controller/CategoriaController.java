@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import org.apache.catalina.filters.CsrfPreventionFilterBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -67,4 +68,67 @@ public class CategoriaController {
 		
 		return "insertarCategoria";
 	}
+	
+	@GetMapping("formularioactualizarcategoria")
+	public String getFormularioActualizarCategoria() {
+		return "actualizarCategoria";
+	}
+	@PostMapping("formularioactualizarcategoria")
+	public String getFormulariosActualizarAlumnos(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
+			@RequestParam("descripcion")String descripcion, @RequestParam(value="activo", required = false)String activo, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+		
+		
+		activo = (activo != null)? "1": "0";
+		
+		
+		
+		
+		List<CategoriaDTO> listaCategoria = categoriaServicio.buscarCategoria(id, nombre, descripcion, activo);	
+		model.addAttribute("lista", listaCategoria);
+		
+		return "actualizarCategoria";
+	}
+	
+	@PostMapping("actualizarcategoria")
+	public String actualizarCategoria(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
+			@RequestParam("descripcion")String descripcion, @RequestParam(value="activo", required = false)String activo, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+		
+		
+		activo = (activo != null)? "1": "0";
+		
+		Integer resultado = categoriaServicio.actualizarCategoria(id, nombre, descripcion, activo);
+		model.addAttribute("resultado", resultado);
+		
+		return "actualizarCategoria";
+	}
+	@GetMapping("formularioborrarcategoria")
+	public String formularioBorrarAlumno() {
+		
+		return "borrarCategoria";
+		
+	
+}
+	@PostMapping("formularioborrarcategoria")
+	public String getFormulariosBorrarAlumnos(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
+			@RequestParam("descripcion")String descripcion, @RequestParam(value="activo", required = false)String activo, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+		
+		
+		activo = (activo != null)? "1": "0";
+		
+		
+		
+		List<CategoriaDTO> listaCategoria = categoriaServicio.buscarCategoria(id, nombre, descripcion, activo);	
+		model.addAttribute("lista", listaCategoria);
+		
+		return "borrarCategoria";
+	}
+	
+	@PostMapping("borrarcategoria")
+	public String borrarAlumno(@RequestParam("id") String id, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+		
+		Integer resultado = categoriaServicio.borrarCategoria(id);
+		model.addAttribute("resultado", resultado);
+		return "borrarCategoria";
+	}
+
 }

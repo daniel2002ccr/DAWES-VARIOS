@@ -38,7 +38,7 @@
 
 			<form
 
-				action="http://localhost:8080/tienda/categoria/formularioactualizarcategorias"
+				action="http://localhost:8080/tienda/categoria/formularioactualizarcategoria"
 
 				method="POST">
 
@@ -91,7 +91,7 @@
 
 <c:if test="${resultado == 1 }">
 
- <p>Categoria insertada correctamente.</p>
+<p>Categoria actualizada correctamente.</p>
 </c:if>
 	</div>
 

@@ -91,7 +91,7 @@
 
 <c:if test="${resultado == 1 }">
 
- <p>Categoria insertada correctamente.</p>
+ <p>Categoria actualizada correctamente.</p>
 </c:if>
 	</div>
 

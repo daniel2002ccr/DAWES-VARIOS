@@ -1,5 +1,6 @@
 package com.daniel.tienda.controlador.actualizar;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,6 +40,7 @@ public class ActualizarCategoriaController extends HttpServlet {
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
+		Integer resultado = 0;
 		
 		String activo = request.getParameter("activo");
 		
@@ -47,12 +49,14 @@ public class ActualizarCategoriaController extends HttpServlet {
 		CategoriaServicio cs = new CategoriaServicio();
 		
 		try {
-			cs.actualizarCategoria(id, nombre, descripcion, activo);
+			resultado = cs.actualizarCategoria(id, nombre, descripcion, activo);
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		request.setAttribute("resultado", resultado);
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/actualizarCategoria.jsp");
+		d.forward(request, response);
 	}
 
 }
