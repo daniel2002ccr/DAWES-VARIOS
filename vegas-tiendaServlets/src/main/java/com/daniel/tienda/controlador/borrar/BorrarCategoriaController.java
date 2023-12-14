@@ -1,4 +1,4 @@
-package com.daniel.controlador.borrar;
+package com.daniel.tienda.controlador.borrar;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

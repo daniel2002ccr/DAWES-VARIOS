@@ -15,6 +15,12 @@ public class CategoriaDTO {
 		this.activo = activo;
 	}
 
+	public CategoriaDTO(Integer id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
 	public Integer getId() {
 		return id;
 	}

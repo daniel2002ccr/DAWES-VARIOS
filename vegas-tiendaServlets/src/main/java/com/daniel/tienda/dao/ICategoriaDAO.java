@@ -15,5 +15,5 @@ public interface ICategoriaDAO {
 	public Integer insertarCategoria(String nombre, String descripcion, String activo)throws SQLException, ClassNotFoundException, NamingException;
 	public Integer actualizarCategoria(String id, String nombre, String descripcion, String activo)throws SQLException, ClassNotFoundException, NamingException;
 	public Integer borrarCategoria(String id)throws SQLException, ClassNotFoundException, NamingException;
-	
+	public List<CategoriaDTO> recuperarComboCategoria() throws SQLException, ClassNotFoundException, NamingException;
 }

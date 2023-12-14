@@ -1,4 +1,4 @@
-package com.daniel.controlador.borrar;
+package com.daniel.tienda.controlador.listar;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,18 +13,21 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-
+import com.daniel.tienda.dao.ICategoriaDAO;
+import com.daniel.tienda.dao.IProveedorDAO;
+import com.daniel.tienda.dao.jdbc.CategoriaDAOJdbc;
+import com.daniel.tienda.dao.jdbc.ProveedorDAO;
 import com.daniel.tienda.dtos.CategoriaDTO;
-import com.daniel.tienda.negocio.impl.CategoriaServicio;
+import com.daniel.tienda.dtos.ProveedorDTO;
 
-@WebServlet("/categoria/formularioborrarcategoria")
-public class FormularioBorrarController extends HttpServlet {
+@WebServlet("/producto/listadoproductos")
+public class ListadoProductosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FormularioBorrarController() {
+    public ListadoProductosController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +36,27 @@ public class FormularioBorrarController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/borrarCategoria.jsp");
+
+		List<CategoriaDTO> listaCategorias = new ArrayList<>();	
+		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
+		
+		List<ProveedorDTO> listaProveedor = new ArrayList<>();
+		IProveedorDAO combosProveedor = new ProveedorDAO();
+		
+		
+		try {
+			listaCategorias = combosCategoria.recuperarComboCategoria();
+			listaProveedor = combosProveedor.recuperarComboProovedor();
+			
+		
+		} catch (ClassNotFoundException | SQLException | NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("combosCategoria", listaCategorias);
+		request.setAttribute("combosProveedor", listaProveedor);
+		
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/listadoProductos.jsp");
 		d.forward(request, response);
 	}
 
@@ -41,29 +64,12 @@ public class FormularioBorrarController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<CategoriaDTO> listaCategoria = new ArrayList<>();
-		
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
-
-		String activo = request.getParameter("activo");
 		
-		activo = (activo != null) ? "1" : "0";
 		
-		CategoriaServicio cs = new CategoriaServicio();
-		
-		try {
-			listaCategoria = cs.buscarCategoria(id, nombre, descripcion, activo);
-		} catch (ClassNotFoundException | SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("lista", listaCategoria);
-
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/borrarCategoria.jsp");
-		d.forward(request, response);
+		doGet(request, response);
 	}
 
 }

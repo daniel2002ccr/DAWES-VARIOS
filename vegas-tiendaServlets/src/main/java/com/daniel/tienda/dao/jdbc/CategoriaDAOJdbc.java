@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+
 import com.daniel.tienda.dao.ICategoriaDAO;
 import com.daniel.tienda.dtos.CategoriaDTO;
 import com.daniel.tienda.utils.DBUtils;
@@ -92,6 +93,26 @@ public class CategoriaDAOJdbc implements ICategoriaDAO {
 		Integer resultado = ps.executeUpdate();
 		c.close();
 		return resultado;
+	}
+
+	@Override
+	public List<CategoriaDTO> recuperarComboCategoria()
+			throws SQLException, ClassNotFoundException, NamingException {
+		
+String sql = " SELECT Id_Categoria, nombre FROM categorias ORDER BY nombre ";
+		
+		List<CategoriaDTO> listaCategorias = new ArrayList<>();
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql); 
+		ResultSet rs = ps.executeQuery();
+		
+		
+		while(rs.next()) {
+			listaCategorias.add(new CategoriaDTO(rs.getInt(1), rs.getString(2)));
+		}
+		c.close();
+		return listaCategorias;
 	}
 
 }
