@@ -22,7 +22,7 @@
 <div class = "container">
 
 	<div class = "form">
-		<form action="http://localhost:8080/tienda/producto/listadoproductos" method = "post">
+		<form action="http://localhost:8080/tienda/producto/listadoproductos" method = "post" id="formulario">
 		
 			<label for = "id">ID Producto</label>
 			<input type="text" id="id" name="id">
@@ -34,14 +34,14 @@
 			<input type="text" id="precio" name="precio">
 			<label for = "cantidadStock">Cantidad en stock</label>
 			<input type="text" id="cantidadStock" name="cantidadStock">
-			<select name="categoria" id ="categoria" form ="formulario">
+			<select name="categorias" id ="categorias" form ="formulario">
 			<c:forEach items="${combosCategoria}" var="categoria">
 			<option value="${categoria.id}">${categoria.nombre}</option>
 			</c:forEach>
 			</select>
 			<select name="proveedores" id ="proveedores" form ="formulario">
-			<c:forEach items="${combosProveedor}" var="proveedores">
-			<option value="${proveedores.id}">${proveedores.nombre}</option>
+			<c:forEach items="${combosProveedor}" var="proveedor">
+			<option value="${proveedor.id}">${proveedor.nombre}</option>
 			</c:forEach>
 			</select>
 			<input type ="submit" value ="Enviar">
@@ -64,8 +64,9 @@
 				<td>${productos.id}</td>
 				<td>${productos.nombre}</td>
 				<td>${productos.descripcion}</td>
-				<td>${productos.cantidadStock}</td>
 				<td>${productos.precio}</td>
+				<td>${productos.cantidadStock}</td>
+			
 			</tr>
 		</c:forEach>
 	</table>

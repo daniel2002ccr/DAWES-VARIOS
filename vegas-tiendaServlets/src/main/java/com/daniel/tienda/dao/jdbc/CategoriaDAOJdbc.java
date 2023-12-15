@@ -99,7 +99,7 @@ public class CategoriaDAOJdbc implements ICategoriaDAO {
 	public List<CategoriaDTO> recuperarComboCategoria()
 			throws SQLException, ClassNotFoundException, NamingException {
 		
-String sql = " SELECT Id_Categoria, nombre FROM categorias ORDER BY nombre ";
+String sql = " SELECT Id_Categoria, nombre FROM categorias ORDER BY Id_Categoria ";
 		
 		List<CategoriaDTO> listaCategorias = new ArrayList<>();
 		

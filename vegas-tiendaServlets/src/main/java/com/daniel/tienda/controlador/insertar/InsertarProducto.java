@@ -1,4 +1,4 @@
-package com.daniel.tienda.controlador.listar;
+package com.daniel.tienda.controlador.insertar;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -18,18 +18,17 @@ import com.daniel.tienda.dao.IProveedorDAO;
 import com.daniel.tienda.dao.jdbc.CategoriaDAOJdbc;
 import com.daniel.tienda.dao.jdbc.ProveedorDAO;
 import com.daniel.tienda.dtos.CategoriaDTO;
-import com.daniel.tienda.dtos.ProductoDTO;
 import com.daniel.tienda.dtos.ProveedorDTO;
 import com.daniel.tienda.negocio.impl.ProductoServicio;
 
-@WebServlet("/producto/listadoproductos")
-public class ListadoProductosController extends HttpServlet {
+@WebServlet("/producto/insertarproducto")
+public class InsertarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListadoProductosController() {
+    public InsertarProducto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +37,16 @@ public class ListadoProductosController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		List<CategoriaDTO> listaCategorias = new ArrayList<>();	
 		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
 		
 		List<ProveedorDTO> listaProveedor = new ArrayList<>();
 		IProveedorDAO combosProveedor = new ProveedorDAO();
 		
-		
 		try {
 			listaCategorias = combosCategoria.recuperarComboCategoria();
 			listaProveedor = combosProveedor.recuperarComboProovedor();
-			
-		
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,7 +54,7 @@ public class ListadoProductosController extends HttpServlet {
 		request.setAttribute("combosCategoria", listaCategorias);
 		request.setAttribute("combosProveedor", listaProveedor);
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/listadoProductos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/insertarProducto.jsp");
 		d.forward(request, response);
 	}
 
@@ -66,6 +62,7 @@ public class ListadoProductosController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer resultado = 0;
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
@@ -77,38 +74,17 @@ public class ListadoProductosController extends HttpServlet {
 		precio = (precio == "") ? "0":precio;
 		cantidadStock = (cantidadStock == "") ? "0":cantidadStock;
 		
-		List<ProductoDTO> listadoProductos = new ArrayList<>();
 		ProductoServicio ps = new ProductoServicio();
 		
-		List<CategoriaDTO> listaCategorias = new ArrayList<>();	
-		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
-		
-		List<ProveedorDTO> listaProveedor = new ArrayList<>();
-		IProveedorDAO combosProveedor = new ProveedorDAO();
-		
-		
 		try {
-			listaCategorias = combosCategoria.recuperarComboCategoria();
-			listaProveedor = combosProveedor.recuperarComboProovedor();
-			
-		
+			resultado = ps.insertarProducto(nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		try {
-			listadoProductos = ps.buscarProducto(id, nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
-		} catch (ClassNotFoundException | SQLException | NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		request.setAttribute("lista", listadoProductos);
-		request.setAttribute("combosCategoria", listaCategorias);
-		request.setAttribute("combosProveedor", listaProveedor);
-		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/listadoProductos.jsp");
-		d.forward(request, response);
+		request.setAttribute("resultado", resultado);
+		doGet(request, response);
 	}
 
 }

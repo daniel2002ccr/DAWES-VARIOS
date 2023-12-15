@@ -22,7 +22,7 @@ public class ProveedorDAO implements IProveedorDAO{
 	public List<ProveedorDTO> recuperarComboProovedor()
 			throws SQLException, ClassNotFoundException, NamingException {
 		
-String sql = " SELECT Id_Proveedor, nombre FROM proveedores ORDER BY nombre ";
+String sql = " SELECT Id_Proveedor, nombre FROM proveedores ORDER BY Id_Proveedor ";
 		
 		List<ProveedorDTO> listaProveedor = new ArrayList<>();
 		
