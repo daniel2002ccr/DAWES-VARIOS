@@ -26,4 +26,11 @@ public class ProductoServicio implements IProductoServicio{
 		return new ProductosDAO().insertarProducto(nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
 	}
 
+	@Override
+	public Integer actualizarProducto(String id, String nombre, String descripcion, String precio, String cantidadStock,
+			String id_categoria, String id_proveedor) throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return new ProductosDAO().actualizarProducto(id, nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
+	}
+
 }

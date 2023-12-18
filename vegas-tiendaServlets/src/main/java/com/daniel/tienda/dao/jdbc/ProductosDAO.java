@@ -70,4 +70,26 @@ public class ProductosDAO implements IProductosDAO {
 		return resultado;
 	}
 
+	@Override
+	public Integer actualizarProducto(String id, String nombre, String descripcion, String precio, String cantidadStock,
+			String id_categoria, String id_proveedor) throws SQLException, ClassNotFoundException, NamingException {
+		
+		String sql = " UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, CantidadEnStock = ?, id_categoria = ?, id_proveedor = ? WHERE id_producto = ? ";
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		
+		ps.setString(1, nombre);
+		ps.setString(2, descripcion);
+		ps.setString(3, precio);
+		ps.setString(4, cantidadStock);
+		ps.setString(5, id_categoria);
+		ps.setString(6, id_proveedor);
+		ps.setString(7, id);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
+	}
+
 }
