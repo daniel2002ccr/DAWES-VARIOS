@@ -13,13 +13,14 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-import com.daniel.tienda.dao.ICategoriaDAO;
-import com.daniel.tienda.dao.IProveedorDAO;
-import com.daniel.tienda.dao.jdbc.CategoriaDAOJdbc;
-import com.daniel.tienda.dao.jdbc.ProveedorDAO;
-import com.daniel.tienda.dtos.CategoriaDTO;
+
+import com.daniel.tienda.dao.ICombosDAO;
+
+
+import com.daniel.tienda.dao.jdbc.CombosDAO;
+
 import com.daniel.tienda.dtos.ProductoDTO;
-import com.daniel.tienda.dtos.ProveedorDTO;
+import com.daniel.tienda.dtos.CombosDTO;
 import com.daniel.tienda.negocio.impl.ProductoServicio;
 
 @WebServlet("/producto/formularioactualizarproductos")
@@ -40,22 +41,25 @@ public class FormularioActualizarProductoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<CategoriaDTO> listaCategorias = new ArrayList<>();
-		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
-
-		List<ProveedorDTO> listaProveedor = new ArrayList<>();
-		IProveedorDAO combosProveedor = new ProveedorDAO();
-
+		List<CombosDTO> listaCategorias = new ArrayList<>();	
+		ICombosDAO combosCategoria = new CombosDAO();
+		
+		List<CombosDTO> listaProveedor = new ArrayList<>();
+		ICombosDAO combosProveedor = new CombosDAO();
+		
+		
 		try {
 			listaCategorias = combosCategoria.recuperarComboCategoria();
 			listaProveedor = combosProveedor.recuperarComboProovedor();
+			
+		
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("combosCategoria", listaCategorias);
 		request.setAttribute("combosProveedor", listaProveedor);
-
+		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/actualizarProducto.jsp");
 		d.forward(request, response);
 	}
@@ -86,15 +90,18 @@ public class FormularioActualizarProductoController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		List<CategoriaDTO> listaCategorias = new ArrayList<>();
-		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
-
-		List<ProveedorDTO> listaProveedor = new ArrayList<>();
-		IProveedorDAO combosProveedor = new ProveedorDAO();
-
+		List<CombosDTO> listaCategorias = new ArrayList<>();	
+		ICombosDAO combosCategoria = new CombosDAO();
+		
+		List<CombosDTO> listaProveedor = new ArrayList<>();
+		ICombosDAO combosProveedor = new CombosDAO();
+		
+		
 		try {
 			listaCategorias = combosCategoria.recuperarComboCategoria();
 			listaProveedor = combosProveedor.recuperarComboProovedor();
+			
+		
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

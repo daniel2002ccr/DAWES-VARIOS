@@ -97,4 +97,25 @@ public class CategoriaDAOJdbc implements ICategoriaDAO {
 		return resultado;
 	}
 
+	@Override
+	public List<CategoriaDTO> recuperarComboCategoria()
+			throws SQLException, ClassNotFoundException, NamingException {
+		
+String sql = " SELECT Id_Categoria, nombre FROM categorias ORDER BY Id_Categoria ";
+		
+		List<CategoriaDTO> listaCategorias = new ArrayList<>();
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql); 
+		ResultSet rs = ps.executeQuery();
+		
+		
+		while(rs.next()) {
+			listaCategorias.add(new CategoriaDTO(rs.getInt(1), rs.getString(2)));
+		}
+		c.close();
+		return listaCategorias;
+	}
+
+
 }

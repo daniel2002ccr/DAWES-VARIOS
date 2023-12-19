@@ -10,12 +10,13 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.IProveedorDAO;
 import com.daniel.tienda.dtos.ProveedorDTO;
 import com.daniel.tienda.utils.DBUtils;
 
-
+@Component
 public class ProveedorDAO implements IProveedorDAO{
 
 	@Override

@@ -13,13 +13,11 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-import com.daniel.tienda.dao.ICategoriaDAO;
-import com.daniel.tienda.dao.IProveedorDAO;
-import com.daniel.tienda.dao.jdbc.CategoriaDAOJdbc;
-import com.daniel.tienda.dao.jdbc.ProveedorDAO;
-import com.daniel.tienda.dtos.CategoriaDTO;
+
+import com.daniel.tienda.dao.ICombosDAO;
+import com.daniel.tienda.dao.jdbc.CombosDAO;
 import com.daniel.tienda.dtos.ProductoDTO;
-import com.daniel.tienda.dtos.ProveedorDTO;
+import com.daniel.tienda.dtos.CombosDTO;
 import com.daniel.tienda.negocio.impl.ProductoServicio;
 
 @WebServlet("/producto/listadoproductos")
@@ -39,11 +37,11 @@ public class ListadoProductosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<CategoriaDTO> listaCategorias = new ArrayList<>();	
-		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
+		List<CombosDTO> listaCategorias = new ArrayList<>();	
+		ICombosDAO combosCategoria = new CombosDAO();
 		
-		List<ProveedorDTO> listaProveedor = new ArrayList<>();
-		IProveedorDAO combosProveedor = new ProveedorDAO();
+		List<CombosDTO> listaProveedor = new ArrayList<>();
+		ICombosDAO combosProveedor = new CombosDAO();
 		
 		
 		try {
@@ -80,11 +78,11 @@ public class ListadoProductosController extends HttpServlet {
 		List<ProductoDTO> listadoProductos = new ArrayList<>();
 		ProductoServicio ps = new ProductoServicio();
 		
-		List<CategoriaDTO> listaCategorias = new ArrayList<>();	
-		ICategoriaDAO combosCategoria = new CategoriaDAOJdbc();
+		List<CombosDTO> listaCategorias = new ArrayList<>();	
+		ICombosDAO combosCategoria = new CombosDAO();
 		
-		List<ProveedorDTO> listaProveedor = new ArrayList<>();
-		IProveedorDAO combosProveedor = new ProveedorDAO();
+		List<CombosDTO> listaProveedor = new ArrayList<>();
+		ICombosDAO combosProveedor = new CombosDAO();
 		
 		
 		try {

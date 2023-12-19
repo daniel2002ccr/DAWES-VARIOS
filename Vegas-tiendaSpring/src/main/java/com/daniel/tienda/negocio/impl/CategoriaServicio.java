@@ -47,5 +47,11 @@ public class CategoriaServicio implements ICategoriaServicio{
 		return categoriaDAO.borrarCategoria(id);
 	}
 
+	@Override
+	public List<CategoriaDTO> recuperarComboCategoria() throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return categoriaDAO.recuperarComboCategoria();
+	}
+
 	
 }
