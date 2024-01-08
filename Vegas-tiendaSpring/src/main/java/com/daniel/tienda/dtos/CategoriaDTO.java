@@ -14,6 +14,7 @@ public class CategoriaDTO {
 		this.descripcion = descripcion;
 		this.activo = activo;
 	}
+
 	public CategoriaDTO(Integer id, String nombre) {
 		super();
 		this.id = id;

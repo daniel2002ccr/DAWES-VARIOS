@@ -1,11 +1,11 @@
 package com.daniel.tienda.dtos;
 
-public class ProveedorDTO {
+public class CombosDTO {
 
 	private Integer id;
 	private String nombre;
 
-	public ProveedorDTO(Integer id, String nombre) {
+	public CombosDTO(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

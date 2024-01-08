@@ -6,13 +6,14 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.IProductosDAO;
 import com.daniel.tienda.dao.jdbc.ProductosDAO;
 import com.daniel.tienda.dtos.ProductoDTO;
 import com.daniel.tienda.negocio.IProductoServicio;
 
+@Component
 public class ProductoServicio implements IProductoServicio{
 	
 	@Autowired

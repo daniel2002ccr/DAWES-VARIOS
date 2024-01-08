@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.ICategoriaDAO;
+import com.daniel.tienda.dao.ICombosDAO;
 import com.daniel.tienda.dao.jdbc.CategoriaDAOJdbc;
 import com.daniel.tienda.dtos.CategoriaDTO;
+import com.daniel.tienda.dtos.CombosDTO;
 import com.daniel.tienda.negocio.ICategoriaServicio;
 
 @Component
@@ -47,11 +49,4 @@ public class CategoriaServicio implements ICategoriaServicio{
 		return categoriaDAO.borrarCategoria(id);
 	}
 
-	@Override
-	public List<CategoriaDTO> recuperarComboCategoria() throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return categoriaDAO.recuperarComboCategoria();
-	}
-
-	
 }

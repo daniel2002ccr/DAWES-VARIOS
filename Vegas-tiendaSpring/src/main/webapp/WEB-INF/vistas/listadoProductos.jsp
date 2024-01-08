@@ -6,9 +6,9 @@
    <%@ page isELIgnored="false"%>
 <html>
 <head>
-	 <link rel="stylesheet" href="../css/index.css">
-	 <link rel="stylesheet" href="../css/formularios.css">
-	 <link rel="stylesheet" href="../css/tablas.css">
+	 <link rel="stylesheet" href="/tienda/css/index.css">
+	 <link rel="stylesheet" href="/tienda/css/formularios.css">
+	 <link rel="stylesheet" href="/tienda/css/tablas.css">
 	 
 </head>
 <body>
@@ -22,7 +22,7 @@
 <div class = "container">
 
 	<div class = "form">
-		<form action="http://localhost:8080/tienda/producto/listadoproductos" method = "post" id="formulario">
+		<form action="http://localhost:8080/tienda/productos/listadoproductos" method = "post" id="formulario">
 		
 			<label for = "id">ID Producto</label>
 			<input type="text" id="id" name="id">
