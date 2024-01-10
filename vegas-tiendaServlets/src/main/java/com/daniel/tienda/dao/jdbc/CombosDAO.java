@@ -53,4 +53,21 @@ String sql = " SELECT Id_Categoria, nombre FROM categorias ORDER BY Id_Categoria
 		c.close();
 		return listaCategorias;
 	}
+
+	@Override
+	public List<CombosDTO> recuperarComboPoblacion() throws SQLException, ClassNotFoundException, NamingException {
+
+	String sql = " SELECT ID, nombre FROM poblacion ORDER BY ID";
+	
+	List<CombosDTO> listaPoblacion = new ArrayList<>();
+	
+	Connection c = DBUtils.conectaBBDD();
+	PreparedStatement ps = c.prepareStatement(sql); 
+	ResultSet rs = ps.executeQuery();
+	
+	while(rs.next()) {
+		listaPoblacion.add(new CombosDTO(rs.getInt(1), rs.getString(2)));
+	}
+		return listaPoblacion;
+	}
 }
