@@ -64,7 +64,7 @@
 
 				<form
 
-					action="http://localhost:8080/tienda/cliente/actualizarcliente"
+					action="http://localhost:8080/tienda/cliente/borrarcliente"
 
 					method="POST">
 
