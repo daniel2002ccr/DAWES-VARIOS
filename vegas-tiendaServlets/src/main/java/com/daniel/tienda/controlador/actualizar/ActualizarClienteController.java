@@ -1,4 +1,4 @@
-package com.daniel.tienda.controlador.listar;
+package com.daniel.tienda.controlador.actualizar;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -15,18 +15,17 @@ import javax.naming.NamingException;
 
 import com.daniel.tienda.dao.ICombosDAO;
 import com.daniel.tienda.dao.jdbc.CombosDAO;
-import com.daniel.tienda.dtos.ClientesDTO;
 import com.daniel.tienda.dtos.CombosDTO;
 import com.daniel.tienda.negocio.impl.ClientesServicio;
 
-@WebServlet("/cliente/listadoclientes")
-public class ListadoClientesController extends HttpServlet {
+@WebServlet("/cliente/actualizarcliente")
+public class ActualizarClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListadoClientesController() {
+    public ActualizarClienteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +34,20 @@ public class ListadoClientesController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		List<CombosDTO> listadoPoblacion = new ArrayList<>();
 		ICombosDAO comboPoblacion = new CombosDAO();
-		
+
 		try {
 			listadoPoblacion = comboPoblacion.recuperarComboPoblacion();
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("comboPoblacion", listadoPoblacion);
-		
-		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/listadoClientes.jsp");
+
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/actualizarCliente.jsp");
 		d.forward(request, response);
 	}
 
@@ -60,35 +59,34 @@ public class ListadoClientesController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String correo = request.getParameter("correo");
 		String poblacion = request.getParameter("poblacion");
-		String activo = request.getParameter("activo");
-
-		poblacion = (poblacion != null) ? poblacion : "";
-		activo = (activo != null) ? "1":"0";
+		String activo = request.getParameter("activo"); 
 		
-		List<ClientesDTO> listadoClientes = new ArrayList<>();
+		Integer resultado = 0;
+		
+		activo = (activo != null) ? "1":"0";
 		
 		ClientesServicio cs = new ClientesServicio();
 		
 		try {
-			listadoClientes = cs.buscarClientes(id, nombre, correo, poblacion, activo);
+			resultado = cs.actualizarCliente(id, nombre, correo, poblacion, activo);
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 		
+		
 		List<CombosDTO> listadoPoblacion = new ArrayList<>();
 		ICombosDAO comboPoblacion = new CombosDAO();
-		
+
 		try {
 			listadoPoblacion = comboPoblacion.recuperarComboPoblacion();
 		} catch (ClassNotFoundException | SQLException | NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("comboPoblacion", listadoPoblacion);
-		request.setAttribute("lista", listadoClientes);
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/listadoClientes.jsp");
+		request.setAttribute("resultado", resultado);
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/actualizarCliente.jsp");
 		d.forward(request, response);
 	}
 

@@ -19,10 +19,26 @@ public class ClientesDAOJdbc implements IClientesDAO{
 	@Override
 	public List<ClientesDTO> buscarClientes(String id, String nombre, String correo, String poblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
+		String sql;
 		
-		String sql = " SELECT cl.Id_Cliente, cl.nombre, cl.correo, cl.Id_Poblacion, cl.activo FROM clientes cl "
-				+ " INNER JOIN poblacion p ON p.id = cl.Id_Poblacion "
-				+ " WHERE cl.Id_Cliente LIKE ? AND cl.nombre LIKE ? AND cl.correo LIKE ? AND cl.IdPoblacion LIKE ? AND cl.activo = ?";
+		if(poblacion.equals("")) {
+		 sql = "SELECT c.ID_Cliente, c.Nombre, c.CorreoElectronico, p.Nombre, c.activo "
+				+ "	FROM clientes c "
+				+ "	JOIN poblacion p ON c.ID_Poblacion = p.ID "
+				+ "	WHERE c.ID_Cliente LIKE ? "
+				+ "	AND c.Nombre LIKE ?  "
+				+ " AND c.CorreoElectronico LIKE ? "
+				+ " AND c.activo = ? ";
+	} else {
+		 sql = "SELECT c.ID_Cliente, c.Nombre, c.CorreoElectronico, p.Nombre, c.activo "
+				+ "	FROM clientes c "
+				+ "	JOIN poblacion p ON c.ID_Poblacion = p.ID "
+				+ "	WHERE c.ID_Cliente LIKE ? "
+				+ "	AND c.Nombre LIKE ?  "
+				+ " AND c.CorreoElectronico LIKE ? "
+				+ " AND c.ID_Poblacion = ? "
+				+ " AND c.activo = ? ";
+	}
 		
 		
 		Connection c = DBUtils.conectaBBDD();
@@ -32,8 +48,14 @@ public class ClientesDAOJdbc implements IClientesDAO{
 		ps.setString(1, "%" + id + "%");
 		ps.setString(2, "%" + nombre + "%");
 		ps.setString(3, "%" + correo + "%");
-		ps.setString(4, "%" + poblacion + "%");
-		ps.setString(5, activo);
+		
+		if (poblacion.equals("")) {
+			ps.setString(4, activo);
+		} else {
+			ps.setString(4, poblacion);
+			ps.setString(5, activo);
+		}
+
 		
 		ResultSet rs = ps.executeQuery();
 		
@@ -45,23 +67,60 @@ public class ClientesDAOJdbc implements IClientesDAO{
 	}
 
 	@Override
-	public Integer insertarCliente(String nombre, String correo, String activo)
+	public Integer insertarCliente(String nombre, String correo, String poblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = " INSERT INTO clientes (nombre, CorreoElectronico, Id_Poblacion, activo) VALUES (?, ?, ?, ?)";
+		
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		
+		ps.setString(1, nombre);
+		ps.setString(2, correo);
+		ps.setString(3, poblacion);
+		ps.setString(4, activo);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		
+		return resultado;
 	}
 
 	@Override
 	public Integer actualizarCliente(String id, String nombre, String correo, String poblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE clientes SET nombre = ?, CorreoElectronico = ?, Id_Poblacion = ?, activo = ? WHERE id_cliente = ? ";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		
+		ps.setString(1, nombre);
+		ps.setString(2, correo);
+		ps.setString(3, poblacion);
+		ps.setString(4, activo);
+		ps.setString(5, id);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
 	}
 
 	@Override
 	public Integer borrarCliente(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE clientes SET activo = 0 WHERE id_cliente = ?";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
+	}
 	}
 
-}
+
+

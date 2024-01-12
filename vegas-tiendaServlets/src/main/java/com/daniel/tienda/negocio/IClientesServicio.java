@@ -9,8 +9,14 @@ import com.daniel.tienda.dtos.ClientesDTO;
 
 public interface IClientesServicio {
 
-	public List<ClientesDTO> buscarClientes(String id, String nombre, String correo, String poblacion, String activo) throws SQLException, ClassNotFoundException, NamingException;
-	public Integer insertarCliente(String nombre, String correo, String activo)throws SQLException, ClassNotFoundException, NamingException;
-	public Integer actualizarCliente(String id, String nombre, String correo, String poblacion, String activo)throws SQLException, ClassNotFoundException, NamingException;
-	public Integer borrarCliente(String id)throws SQLException, ClassNotFoundException, NamingException;
+	public List<ClientesDTO> buscarClientes(String id, String nombre, String correo, String poblacion, String activo)
+			throws SQLException, ClassNotFoundException, NamingException;
+
+	public Integer insertarCliente(String nombre, String correo, String poblacion, String activo)
+			throws SQLException, ClassNotFoundException, NamingException;
+
+	public Integer actualizarCliente(String id, String nombre, String correo, String poblacion, String activo)
+			throws SQLException, ClassNotFoundException, NamingException;
+
+	public Integer borrarCliente(String id) throws SQLException, ClassNotFoundException, NamingException;
 }

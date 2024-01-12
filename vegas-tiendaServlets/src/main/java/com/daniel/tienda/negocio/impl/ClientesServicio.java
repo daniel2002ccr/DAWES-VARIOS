@@ -19,23 +19,23 @@ public class ClientesServicio implements IClientesServicio{
 	}
 
 	@Override
-	public Integer insertarCliente(String nombre, String correo, String activo)
+	public Integer insertarCliente(String nombre, String correo, String poblacion,  String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return new ClientesDAOJdbc().insertarCliente(nombre, correo, poblacion, activo);
 	}
 
 	@Override
 	public Integer actualizarCliente(String id, String nombre, String correo, String poblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return new ClientesDAOJdbc().actualizarCliente(id, nombre, correo, poblacion, activo);
 	}
 
 	@Override
 	public Integer borrarCliente(String id) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return new ClientesDAOJdbc().borrarCliente(id);
 	}
 
 }
