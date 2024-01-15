@@ -79,7 +79,7 @@
 					<input type="text" id="nombre" name="nombre" value="${cliente.nombre}"> 
 					<label for="correo"> Correo </label>
 					<input type="text" id="correo" name="correo" value="${cliente.correo}">
-					<select name="poblacion" id ="poblacion" form ="formulario">  
+					<select name="poblacion" id ="poblacion">  
 					<c:forEach items="${comboPoblacion}" var="poblacion">
 					<option value="${poblacion.id}">${poblacion.nombre}</option>
 					</c:forEach>
