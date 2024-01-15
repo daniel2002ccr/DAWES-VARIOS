@@ -25,7 +25,7 @@ public class ProveedoresDAO implements IProveedoresDAO{
 			String correo, String direccion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
 
-		String sql = "SELECT p.Id_Proveedor, p.nombre, p.contacto, p.telefono, p.CorreoElectronico, p.direccion "
+		String sql = "SELECT p.Id_Proveedor, p.nombre, p.contacto, p.telefono, p.CorreoElectronico, p.direccion, p.activo "
 	            + "FROM proveedores p "
 	            + "WHERE p.Id_Proveedor LIKE ? AND p.nombre LIKE ? AND p.contacto LIKE ? AND p.telefono LIKE ? "
 	            + "AND p.CorreoElectronico LIKE ? AND p.direccion LIKE ? AND p.activo = ? ";
@@ -46,7 +46,7 @@ public class ProveedoresDAO implements IProveedoresDAO{
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			listaProveedores.add(new ProveedoresDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) ,rs.getString(6)));
+			listaProveedores.add(new ProveedoresDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5) ,rs.getString(6), rs.getInt(7)));
 		}
 		c.close();
 		return listaProveedores;
@@ -103,8 +103,16 @@ public class ProveedoresDAO implements IProveedoresDAO{
 
 	@Override
 	public Integer borrarProveedor(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = " UPDATE proveedores SET activo = 0 WHERE ID_Proveedor = ?";
+
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
 	}
 
 }

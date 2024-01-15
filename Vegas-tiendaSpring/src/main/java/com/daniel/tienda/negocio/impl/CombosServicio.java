@@ -29,4 +29,10 @@ public class CombosServicio implements ICombosServicio {
 		return combosDAO.recuperarComboProovedor();
 	}
 
+	@Override
+	public List<CombosDTO> recuperarComboPoblacion() throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return combosDAO.recuperarComboPoblacion();
+	}
+
 }

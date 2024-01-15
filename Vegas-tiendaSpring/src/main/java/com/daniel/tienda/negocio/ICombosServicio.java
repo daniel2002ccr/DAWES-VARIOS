@@ -11,4 +11,5 @@ public interface ICombosServicio {
 
 	public List<CombosDTO> recuperarComboCategoria() throws SQLException, ClassNotFoundException, NamingException;
 	public List<CombosDTO> recuperarComboProveedores() throws SQLException, ClassNotFoundException, NamingException;
+	public List<CombosDTO> recuperarComboPoblacion() throws SQLException, ClassNotFoundException, NamingException;
 }

@@ -46,7 +46,7 @@ public class ProveedoresServicio implements IProveedoresServicio{
 	@Override
 	public Integer borrarProveedor(String id) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return proveedoresDAO.borrarProveedor(id);
 	}
 
 }

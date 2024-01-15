@@ -22,19 +22,6 @@ public class ProveedoresDTO {
 		this.activo = activo;
 	}
 	
-
-	public ProveedoresDTO(Integer id, String nombre, String contacto, String telefono, String correo,
-			String direccion) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.contacto = contacto;
-		this.telefono = telefono;
-		this.correo = correo;
-		this.direccion = direccion;
-	}
-
-
 	public Integer getId() {
 		return id;
 	}

@@ -104,4 +104,35 @@ public class ProveedoresController {
 		
 		return "actualizarProveedor";
 	}
+	
+	@GetMapping("formularioborrarproveedor")
+	public String getFormularioBorrarProveedor() {
+		return "borrarProveedor";
+	}
+
+	@PostMapping("formularioborrarproveedor")
+	public String getFormularioBorrarProveedor(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
+	@RequestParam("contacto") String contacto, @RequestParam("telefono") String telefono,
+	@RequestParam("correo") String correo, @RequestParam("direccion") String direccion,
+	@RequestParam(value = "activo", required = false) String activo, ModelMap model)
+			throws ClassNotFoundException, SQLException, NamingException {
+		
+		activo = (activo != null) ? "1" : "0";
+
+		List<ProveedoresDTO> listadoProveedores = proveedoresServicio.buscarProveedores(id, nombre, contacto, telefono,
+				correo, direccion, activo);
+		model.addAttribute("lista", listadoProveedores);
+	
+		return "borrarProveedor";
+	}
+	
+	@PostMapping("borrarproveedor")
+	public String borrarAlumno(@RequestParam("id") String id, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+		
+		Integer resultado = proveedoresServicio.borrarProveedor(id);
+		model.addAttribute("resultado", resultado);
+		return "borrarProveedor";
+	}
 }
+	
+
