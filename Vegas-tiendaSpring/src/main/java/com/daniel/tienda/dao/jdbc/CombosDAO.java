@@ -73,4 +73,53 @@ String sql = " SELECT Id_Categoria, nombre FROM categorias ORDER BY Id_Categoria
 	}
 		return listaPoblacion;
 	}
+
+	@Override
+	public List<CombosDTO> recuperarComboCliente() throws SQLException, ClassNotFoundException, NamingException {
+		String sql = "SELECT ID_Cliente, Nombre FROM clientes ORDER BY  ID_Cliente";
+		
+		List<CombosDTO> listaCliente = new ArrayList<>();
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql); 
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			listaCliente.add(new CombosDTO(rs.getInt(1), rs.getString(2)));
+		}
+		return listaCliente;
+	}
+
+	@Override
+	public List<CombosDTO> recuperarComboProducto() throws SQLException, ClassNotFoundException, NamingException {
+
+		String sql = "SELECT ID_Producto, Nombre FROM productos ORDER BY ID_Producto";
+		
+		List<CombosDTO> listaProductos = new ArrayList<>();
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql); 
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			listaProductos.add(new CombosDTO(rs.getInt(1), rs.getString(2)));
+		}
+		return listaProductos;
+	}
+
+	@Override
+	public List<CombosDTO> recuperarComboEstado() throws SQLException, ClassNotFoundException, NamingException {
+		String sql = "SELECT EstadoID, NombreEstado FROM estadospedidos ORDER BY EstadoID";
+		
+		List<CombosDTO> listaEstados = new ArrayList<>();
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql); 
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			listaEstados.add(new CombosDTO(rs.getInt(1), rs.getString(2)));
+		}
+		return listaEstados;
+	}
 }

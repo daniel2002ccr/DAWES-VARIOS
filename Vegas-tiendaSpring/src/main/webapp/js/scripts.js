@@ -16,7 +16,9 @@ function calculaPrecio() {
 		cliente: cliente,
 		producto: producto
 	};
-
+	if (cliente === "" || producto === "" ) {		
+		return; // Detiene la función si algún campo está vacío
+	}
 	// Realizar una petición POST
 	fetch('http://localhost:8080/tienda/pedidos/calculaprecio', {
 		method: 'POST',
@@ -97,6 +99,7 @@ function realizarVenta() {
 			return response.text();
 		})
 		.then(data => {
+		
 			if (data === "OK") {
 				console.log("Operación exitosa.");
 				alert('Pedido realizado con éxito ');

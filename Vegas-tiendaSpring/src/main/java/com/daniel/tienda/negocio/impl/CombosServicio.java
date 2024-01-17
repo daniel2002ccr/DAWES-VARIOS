@@ -35,4 +35,22 @@ public class CombosServicio implements ICombosServicio {
 		return combosDAO.recuperarComboPoblacion();
 	}
 
+	@Override
+	public List<CombosDTO> recuperarComboCliente() throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return combosDAO.recuperarComboCliente();
+	}
+
+	@Override
+	public List<CombosDTO> recuperarComboProducto() throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return combosDAO.recuperarComboProducto();
+	}
+
+	@Override
+	public List<CombosDTO> recuperarComboEstado() throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return combosDAO.recuperarComboEstado();
+	}
+
 }

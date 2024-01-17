@@ -13,7 +13,7 @@
 	<header>
 		<h2>Gestión de Tiendas</h2>
 	</header>
-	<%@include file="/menu.html"%>
+	<%@include file="menu.html"%>
 
 	<div class="container">
 

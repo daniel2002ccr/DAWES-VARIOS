@@ -15,7 +15,7 @@
 <header>
 <h2>Gestión de Tienda</h2>
 </header>
-<%@include file="/menu.html" %>
+<%@include file="menu.html" %>
 
 
 
