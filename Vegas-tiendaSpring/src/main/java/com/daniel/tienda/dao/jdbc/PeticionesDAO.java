@@ -22,10 +22,10 @@ public class PeticionesDAO implements IPeticionesDAO{
 	public List<PeticionesDTO> buscarPeticiones(String id, String id_cliente, String id_producto, String fecha,
 			String cantidad, String estado) throws SQLException, ClassNotFoundException, NamingException {
 		
-		String sql = " SELECT p.id_Peticiones, p.id_Cliente, p.id_Producto, p.FechaAñadido, p.cantidad, p.estado FROM peticiones p "
+		String sql = " SELECT p.id_Peticiones, p.ID_Cliente, cl.Nombre, p.ID_Producto, pr.Nombre, p.FechaAñadido, p.cantidad, p.Estado, e.NombreEstado FROM peticiones p "
 				+ " INNER JOIN clientes cl ON p.id_Cliente = cl.id_Cliente "
-				+ " INNER JOIN producto pr ON p.id_producto = pr.id_producto "
-				+ " INNER JOIN estados e ON p.estado = e.estadoID WHERE p.id_Peticiones LIKE ? "
+				+ " INNER JOIN productos pr ON p.id_producto = pr.id_producto "
+				+ " INNER JOIN estadospedidos e ON p.estado = e.estadoID WHERE p.id_Peticiones LIKE ? "
 				+ " AND p.cantidad LIKE ? "
 				+ " AND p.FechaAñadido LIKE ? ";
 		
@@ -45,8 +45,8 @@ public class PeticionesDAO implements IPeticionesDAO{
 		PreparedStatement ps = c.prepareStatement(sql);
 		
 		ps.setString(1, "%" + id + "%");
-		ps.setString(2, cantidad);
-		ps.setString(3, fecha);
+		ps.setString(2, "%" + cantidad + "%");
+		ps.setString(3, "%" + fecha + "%");
 		
 		//Con cliente
 		if(!id_cliente.equals("")) {
@@ -83,7 +83,7 @@ public class PeticionesDAO implements IPeticionesDAO{
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
-			listaPeticiones.add(new PeticionesDTO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+			listaPeticiones.add(new PeticionesDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
 		}
 		c.close();
 		return listaPeticiones;
@@ -92,21 +92,60 @@ public class PeticionesDAO implements IPeticionesDAO{
 	@Override
 	public Integer insertarPeticion(String id_cliente, String id_producto, String cantidad, String estado)
 			throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+
+		String sql = "INSERT INTO peticiones (ID_Cliente, ID_Producto, cantidad, estado) VALUES (?, ?, ?, ?)";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, id_cliente);
+		ps.setString(2, id_producto);
+		ps.setString(3, cantidad);
+		ps.setString(4, estado);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		
+		
+		return resultado;
 	}
 
 	@Override
 	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String fecha, String cantidad,
 			String estado) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+
+		String sql = "UPDATE peticiones SET ID_Cliente = ?, ID_Producto = ?, FechaAñadido = ?, Cantidad = ?, Estado = ? WHERE id_Peticiones = ?";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		
+		ps.setString(1, id_cliente);
+		ps.setString(2, id_producto);
+		ps.setString(3, fecha);
+		ps.setString(4, cantidad);
+		ps.setString(5, estado);
+		ps.setString(6, id);
+		
+		System.out.println(ps.toString());
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
 	}
 
 	@Override
 	public Integer borrarPeticion(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+
+		String sql = "UPDATE peticiones SET  Estado = 5 WHERE id_Peticiones = ?";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setString(1, id);
+		
+		Integer resultado = ps.executeUpdate();
+		c.close();
+		return resultado;
 	}
 
 	

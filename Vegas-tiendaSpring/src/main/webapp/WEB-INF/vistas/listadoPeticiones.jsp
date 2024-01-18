@@ -28,12 +28,14 @@
 			<input type="text" id="id" name="id">
 			<label for = "cliente">Cliente</label>
 			<select name="cliente" id ="cliente" form ="formulario">
+			<option value="" selected>Escoja un cliente</option> 
 			<c:forEach items="${combosCliente}" var="cliente">
 			<option value="${cliente.id}">${cliente.nombre}</option>
 			</c:forEach>
 			</select>
 			<label for = "producto">Producto</label>
-			<select name="cliente" id ="cliente" form ="formulario">
+			<select name="producto" id ="producto" form ="formulario">
+			<option value="" selected>Escoja un producto</option> 
 			<c:forEach items="${combosProducto}" var="producto">
 			<option value="${producto.id}">${producto.nombre}</option>
 			</c:forEach>
@@ -42,12 +44,13 @@
 			<input type="text" id="cantidad" name="cantidad">
 			<label for = "estado">Estado</label>
 			<select name="estado" id ="estado" form ="formulario">
+			<option value="" selected>Escoja un estado</option> 
 			<c:forEach items="${combosEstado}" var="estado">
 			<option value="${estado.id}">${estado.nombre}</option>
 			</c:forEach>
 			</select>
 			<label for = "fecha">Fecha desde:</label>
-			<input type="datetime-local" id ="fecha" name="fecha">
+			<input type="date" id ="fecha" name="fecha">
 			<input type ="submit" value ="Enviar">
 		
 		</form>
@@ -65,8 +68,8 @@
 		<c:forEach items="${lista}" var="peticion">
 			<tr>
 				<td>${peticion.id}</td>
-				<td>${peticion.id_cliente}</td>
-				<td>${peticion.id_producto}</td>
+				<td>${peticion.nombre_cliente}</td>
+				<td>${peticion.nombre_producto}</td>
 				<td>${peticion.fecha}</td>
 			</tr>
 		</c:forEach>

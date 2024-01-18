@@ -29,20 +29,20 @@ public class PeticionesServicio implements IPeticionesServicio{
 	public Integer insertarPeticion(String id_cliente, String id_producto, String cantidad, String estado)
 			throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return peticionesDAO.insertarPeticion(id_cliente, id_producto, cantidad, estado);
 	}
 
 	@Override
 	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String fecha, String cantidad,
 			String estado) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return peticionesDAO.actualizarPeticion(id, id_cliente, id_producto, fecha, cantidad, estado);
 	}
 
 	@Override
 	public Integer borrarPeticion(String id) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return null;
+		return peticionesDAO.borrarPeticion(id);
 	}
 
 }
