@@ -155,5 +155,58 @@ public class PeticionesController {
 		return "actualizarPeticion";
 	}
 	
-	
+	@GetMapping("formularioborrarpeticion")
+	public String getFormularioBorrarPeticion(ModelMap model)
+			throws ClassNotFoundException, SQLException, NamingException {
+		
+		List<CombosDTO> listadoClientes = combos.recuperarComboCliente();
+		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
+		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
+		
+
+		model.addAttribute("combosCliente", listadoClientes);
+		model.addAttribute("combosProducto", listadoProductos);
+		model.addAttribute("combosEstado", listadoEstados);
+		
+
+		return "borrarPeticion";
+	}
+	@PostMapping("formularioborrarpeticion")
+	public String formularioBorrarPeticion(@RequestParam("id") String id, @RequestParam("cliente") String id_cliente,
+			@RequestParam("producto") String id_producto, @RequestParam("cantidad") String cantidad,
+			@RequestParam("estado") String estado, @RequestParam("fecha") String fecha, ModelMap model)
+			throws ClassNotFoundException, SQLException, NamingException {
+
+		List<CombosDTO> listadoClientes = combos.recuperarComboCliente();
+		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
+		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
+		
+
+		model.addAttribute("combosCliente", listadoClientes);
+		model.addAttribute("combosProducto", listadoProductos);
+		model.addAttribute("combosEstado", listadoEstados);
+		
+		List<PeticionesDTO> listadoPeticiones = peticionesDAO.buscarPeticiones(id, id_cliente, id_producto, fecha, cantidad, estado);
+		
+		model.addAttribute("lista" , listadoPeticiones);
+
+		return "borrarPeticion";
+
+	}
+	@PostMapping("borrarpeticion")
+	public String borrarPeticion(@RequestParam("id") String id, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+		
+		List<CombosDTO> listadoClientes = combos.recuperarComboCliente();
+		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
+		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
+		
+
+		model.addAttribute("combosCliente", listadoClientes);
+		model.addAttribute("combosProducto", listadoProductos);
+		model.addAttribute("combosEstado", listadoEstados);
+		
+		Integer resultado = peticionesDAO.borrarPeticion(id);
+		model.addAttribute("resultado",resultado);
+		return "borrarPeticion";
+	}
 }

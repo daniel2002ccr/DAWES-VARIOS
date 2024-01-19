@@ -66,14 +66,14 @@
 			<c:forEach items="${combosCliente}" var="cliente">
 			<option value="${cliente.id}">${cliente.nombre}</option>
 			</c:forEach>
-			<option value="${cliente.id}" selected>${peticion.id_cliente}</option>
+			<option value="${peticion.id_cliente}" selected>${peticion.nombre_cliente}</option>
 			</select>
 			<label for = "producto">Producto</label>
 			<select name="producto" id ="producto">
 			<c:forEach items="${combosProducto}" var="producto">
 			<option value="${producto.id}">${producto.nombre}</option>
 			</c:forEach>
-			<option value="${producto.id}" selected>${peticion.id_producto}</option>
+			<option value="${peticion.id_producto}" selected>${peticion.nombre_producto}</option>
 			</select>
 			<label for = "cantidad">Cantidad</label>
 			<input type="text" id="cantidad" name="cantidad" value="${peticion.cantidad}">
@@ -82,7 +82,7 @@
 			<c:forEach items="${combosEstado}" var="estado">
 			<option value="${estado.id}">${estado.nombre}</option>
 			</c:forEach>
-			<option value="${estado.id}" selected>${peticion.id_estado}</option>
+			<option value="${peticion.id_estado}" selected>${peticion.nombre_estado}</option>
 			</select>
 			<label for = "fecha">Fecha Registro:</label>
 			<input type="date" id ="fecha" name="fecha" value="${peticion.fecha}">
@@ -91,7 +91,7 @@
 			</div>
 		</c:forEach>
 		<c:if test="${resultado == 1}">
-			<h3>Peticiones modificado con éxito</h3>
+			<h3>Peticion modificada con éxito</h3>
 		</c:if>
 	</div>
 </body>
