@@ -33,10 +33,10 @@ public class PeticionesServicio implements IPeticionesServicio{
 	}
 
 	@Override
-	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String fecha, String cantidad,
+	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String cantidad,
 			String estado) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return peticionesDAO.actualizarPeticion(id, id_cliente, id_producto, fecha, cantidad, estado);
+		return peticionesDAO.actualizarPeticion(id, id_cliente, id_producto, cantidad, estado);
 	}
 
 	@Override

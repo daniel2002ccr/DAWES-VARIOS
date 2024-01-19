@@ -15,7 +15,7 @@ public interface IPeticionesServicio {
 	public Integer insertarPeticion(String id_cliente, String id_producto, String cantidad, String estado)
 			throws SQLException, ClassNotFoundException, NamingException;
 
-	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String fecha, String cantidad, String estado)
+	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String cantidad, String estado)
 			throws SQLException, ClassNotFoundException, NamingException;
 
 	public Integer borrarPeticion(String id) throws SQLException, ClassNotFoundException, NamingException;

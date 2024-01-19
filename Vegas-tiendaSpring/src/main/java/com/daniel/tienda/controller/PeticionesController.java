@@ -137,7 +137,7 @@ public class PeticionesController {
 	@PostMapping("actualizarpeticiones")
 	public String ActualizarPeticiones(@RequestParam("id") String id, @RequestParam("cliente") String id_cliente,
 			@RequestParam("producto") String id_producto, @RequestParam("cantidad") String cantidad,
-			@RequestParam("estado") String estado, @RequestParam("fecha") String fecha, ModelMap model)
+			@RequestParam("estado") String estado, ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
 
 		List<CombosDTO> listadoClientes = combos.recuperarComboCliente();
@@ -149,7 +149,7 @@ public class PeticionesController {
 		model.addAttribute("combosProducto", listadoProductos);
 		model.addAttribute("combosEstado", listadoEstados);
 		
-		Integer resultado = peticionesDAO.actualizarPeticion(id, id_cliente, id_producto, fecha, cantidad, estado);
+		Integer resultado = peticionesDAO.actualizarPeticion(id, id_cliente, id_producto, cantidad, estado);
 		model.addAttribute("resultado" , resultado);
 
 		return "actualizarPeticion";

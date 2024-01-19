@@ -84,8 +84,6 @@
 			</c:forEach>
 			<option value="${peticion.id_estado}" selected>${peticion.nombre_estado}</option>
 			</select>
-			<label for = "fecha">Fecha Registro:</label>
-			<input type="date" id ="fecha" name="fecha" value="${peticion.fecha}">
 			<br> <input type="submit" id="boton" value="Modificar">
 			</form>
 			</div>

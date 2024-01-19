@@ -111,10 +111,10 @@ public class PeticionesDAO implements IPeticionesDAO{
 	}
 
 	@Override
-	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String fecha, String cantidad,
+	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String cantidad,
 			String estado) throws SQLException, ClassNotFoundException, NamingException {
 
-		String sql = "UPDATE peticiones SET ID_Cliente = ?, ID_Producto = ?, FechaAñadido = ?, Cantidad = ?, Estado = ? WHERE id_Peticiones = ?";
+		String sql = "UPDATE peticiones SET ID_Cliente = ?, ID_Producto = ?, Cantidad = ?, Estado = ? WHERE id_Peticiones = ?";
 		
 		Connection c = DBUtils.conectaBBDD();
 		PreparedStatement ps = c.prepareStatement(sql);
@@ -122,10 +122,9 @@ public class PeticionesDAO implements IPeticionesDAO{
 		
 		ps.setString(1, id_cliente);
 		ps.setString(2, id_producto);
-		ps.setString(3, fecha);
-		ps.setString(4, cantidad);
-		ps.setString(5, estado);
-		ps.setString(6, id);
+		ps.setString(3, cantidad);
+		ps.setString(4, estado);
+		ps.setString(5, id);
 		
 		System.out.println(ps.toString());
 		Integer resultado = ps.executeUpdate();
