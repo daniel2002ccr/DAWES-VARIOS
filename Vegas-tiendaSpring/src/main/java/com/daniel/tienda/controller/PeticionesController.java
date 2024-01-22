@@ -53,7 +53,7 @@ public class PeticionesController {
 		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
 		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
 		
-
+		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
 		model.addAttribute("combosEstado", listadoEstados);
@@ -123,7 +123,7 @@ public class PeticionesController {
 		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
 		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
 		
-
+		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
 		model.addAttribute("combosEstado", listadoEstados);
@@ -148,6 +148,7 @@ public class PeticionesController {
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
 		model.addAttribute("combosEstado", listadoEstados);
+		
 		
 		Integer resultado = peticionesDAO.actualizarPeticion(id, id_cliente, id_producto, cantidad, estado);
 		model.addAttribute("resultado" , resultado);
@@ -177,11 +178,12 @@ public class PeticionesController {
 			@RequestParam("estado") String estado, @RequestParam("fecha") String fecha, ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
 
+		
 		List<CombosDTO> listadoClientes = combos.recuperarComboCliente();
 		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
 		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
 		
-
+		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
 		model.addAttribute("combosEstado", listadoEstados);

@@ -27,7 +27,7 @@ public class PeticionesDAO implements IPeticionesDAO{
 				+ " INNER JOIN productos pr ON p.id_producto = pr.id_producto "
 				+ " INNER JOIN estadospedidos e ON p.estado = e.estadoID WHERE p.id_Peticiones LIKE ? "
 				+ " AND p.cantidad LIKE ? "
-				+ " AND p.FechaAñadido LIKE ? ";
+				+ " AND p.FechaAñadido >= ? ";
 		
 		if(!id_cliente.equals("")) {
 		sql += "AND p.id_Cliente LIKE ? ";
@@ -46,7 +46,7 @@ public class PeticionesDAO implements IPeticionesDAO{
 		
 		ps.setString(1, "%" + id + "%");
 		ps.setString(2, "%" + cantidad + "%");
-		ps.setString(3, "%" + fecha + "%");
+		ps.setString(3, fecha);
 		
 		//Con cliente
 		if(!id_cliente.equals("")) {
