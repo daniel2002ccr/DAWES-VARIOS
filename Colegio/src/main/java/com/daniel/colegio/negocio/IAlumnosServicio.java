@@ -16,3 +16,5 @@ public interface IAlumnosServicio {
 	public Integer borrarAlumno(String id)throws SQLException, ClassNotFoundException, NamingException;
 
 }
+
+

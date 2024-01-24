@@ -6,10 +6,10 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.colegio.dao.AlumnosDAO;
-import com.daniel.colegio.dao.jdbc.impl.AlumnosDAOJdbc;
 import com.daniel.colegio.dtos.AlumnoDTO;
 import com.daniel.colegio.negocio.IAlumnosServicio;
 
@@ -17,7 +17,11 @@ import com.daniel.colegio.negocio.IAlumnosServicio;
 public class AlumnosServicio implements IAlumnosServicio{
 	
 	@Autowired
+	@Qualifier("HibernateImpl")
 	AlumnosDAO alumnosDAO;
+	
+	
+	
 
 	@Override
 	public List<AlumnoDTO> obtenerTodosAlumnos() throws ClassNotFoundException, SQLException, NamingException {

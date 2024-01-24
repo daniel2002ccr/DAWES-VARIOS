@@ -16,7 +16,7 @@ import com.daniel.colegio.dao.AlumnosDAO;
 import com.daniel.colegio.dtos.AlumnoDTO;
 import com.daniel.colegio.utils.DBUtils;
 
-@Component
+@Component("JDBCImpl")
 public class AlumnosDAOJdbc implements AlumnosDAO{
 //	private static final Logger logger = LoggerFactory.getLogger(ControladorPruebaConexionBBDD.class);
     
