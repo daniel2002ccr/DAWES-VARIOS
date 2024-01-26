@@ -10,8 +10,26 @@ public class PedidosDTO {
 	private String fecha;
 	private Integer estado;
 	private String estado_nombre;
+	private Integer id_detalle;
+	private Integer cantidad;
+	private Double precio;
 
-	
+	public PedidosDTO(Integer id, Integer id_cliente, String nombre_cliente, Integer id_producto,
+			String nombre_producto, String fecha, Integer estado, String estado_nombre, Integer id_detalle,
+			Integer cantidad, Double precio) {
+		super();
+		this.id = id;
+		this.id_cliente = id_cliente;
+		this.nombre_cliente = nombre_cliente;
+		this.id_producto = id_producto;
+		this.nombre_producto = nombre_producto;
+		this.fecha = fecha;
+		this.estado = estado;
+		this.estado_nombre = estado_nombre;
+		this.id_detalle = id_detalle;
+		this.cantidad = cantidad;
+		this.precio = precio;
+	}
 
 	public PedidosDTO(Integer id, Integer id_cliente, String nombre_cliente, Integer id_producto,
 			String nombre_producto, String fecha, Integer estado, String estado_nombre) {
@@ -90,4 +108,27 @@ public class PedidosDTO {
 		this.estado_nombre = estado_nombre;
 	}
 
+	public Integer getId_detalle() {
+		return id_detalle;
+	}
+
+	public void setId_detalle(Integer id_detalle) {
+		this.id_detalle = id_detalle;
+	}
+
+	public Integer getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
 }

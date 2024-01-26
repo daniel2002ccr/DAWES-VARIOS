@@ -8,7 +8,7 @@
 
         <!-- Configuración JDBC para el acceso a la BBDD -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/colegio</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/colegio?serverTimezone=UTC</property>
         <property name="connection.username">root</property>
         <property name="connection.password">PracticaRoot</property>
 
@@ -28,9 +28,6 @@
 		
 			<mapping class="com.daniel.colegio.entities.AlumnoEntity"/>
 			<mapping class="com.daniel.colegio.entities.MunicipioEntity"/>
-			<mapping class="com.daniel.colegio.entities.AsignaturasEntity"/>
-			<mapping class="com.daniel.colegio.entities.CajaEntity"/>
-			<mapping class="com.daniel.colegio.entities.MatriculacionesEntity"/>
     </session-factory>
 
 </hibernate-configuration>

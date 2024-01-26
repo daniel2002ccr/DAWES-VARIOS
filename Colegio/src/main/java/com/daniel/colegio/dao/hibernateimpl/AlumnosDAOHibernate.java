@@ -35,15 +35,18 @@ public class AlumnosDAOHibernate implements AlumnosDAO{
 	public Integer insertarAlumno(String id, String nombre, String apellido, String activo, String famNumerosa,
 			String municipios) throws SQLException, ClassNotFoundException, NamingException {
 		
-		AlumnoEntity alumnoEntity = new AlumnoEntity(Integer.parseInt(id), nombre, apellido, new MunicipioEntity(Integer.parseInt(municipios)), Integer.parseInt(famNumerosa), Integer.parseInt(activo));
 	
 		SessionFactory sessionFactory = DBUtils.creadorSession();
 		Session s = sessionFactory.getCurrentSession();
-		
 		s.beginTransaction();
-		Integer pk = (Integer) s.save(alumnoEntity);
-		s.getTransaction().commit();
 		
+		MunicipioEntity me = s.find(MunicipioEntity.class, Integer.parseInt(municipios));
+		
+		AlumnoEntity ae = new AlumnoEntity(Integer.parseInt(id), nombre, apellido, me, Integer.parseInt(famNumerosa), Integer.parseInt(activo));
+		s.persist(me);
+		s.getTransaction().commit();
+		s.close();
+		Integer pk = ae.getId();
 		
 		
 		

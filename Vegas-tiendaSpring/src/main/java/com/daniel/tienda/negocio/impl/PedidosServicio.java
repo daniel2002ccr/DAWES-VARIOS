@@ -24,5 +24,13 @@ public class PedidosServicio implements IPedidosServicio {
 		// TODO Auto-generated method stub
 		return pedidosDAO.buscarPedidos(id, id_cliente, fecha, estado);
 	}
+	@Override
+	public Integer actualizarPedidos(String id, String id_cliente, String id_producto, String id_detalle,
+			String cantidad, String precio, String estado)
+			throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return pedidosDAO.actualizarPedidos(id, id_cliente, id_producto, id_detalle, cantidad, precio, estado);
+	}
+	
 
 }

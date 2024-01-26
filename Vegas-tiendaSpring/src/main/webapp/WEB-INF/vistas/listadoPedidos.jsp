@@ -53,8 +53,8 @@
 		<th>ID Pedido</th>
 		<th>Nombre Cliente</th>
 		<th>Nombre Producto</th>
-		<th>Fecha del pedido</th>
-		<th>Estado del pedido</th>
+		<th>Cantidad</th>
+		<th>Precio del pedido</th>
 		</tr>
 		
 		<c:forEach items="${lista}" var="pedido">
@@ -62,8 +62,8 @@
 				<td>${pedido.id}</td>
 				<td>${pedido.nombre_cliente}</td>
 				<td>${pedido.nombre_producto}</td>
-				<td>${pedido.fecha}</td>
-				<td>${pedido.estado_nombre}</td>
+				<td>${pedido.cantidad}</td>
+				<td>${pedido.precio}</td>
 			</tr>
 		</c:forEach>
 	</table>
