@@ -94,5 +94,47 @@ public class PedidosDAO implements IPedidosDAO {
 
 		return resultado1 + resultado2;
 	}
+	@Override
+	public Double obtenerPrecio(Integer id_cliente) throws SQLException, ClassNotFoundException, NamingException {
 
+		String sql = "SELECT SUM(d.PrecioUnitario) FROM clientes c INNER JOIN pedidos p ON p.Id_Cliente = c.ID_Cliente INNER JOIN detalles_pedido d ON d.ID_Pedido = p.ID_Pedido  WHERE c.ID_Cliente = ?";
+		
+	
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setInt(1, id_cliente);
+		
+		ResultSet rs = ps.executeQuery();
+		System.out.println(ps.toString());
+		Double precio = 0.0;
+		if(rs.next()) {
+		precio = rs.getDouble(1);
+	}
+		return precio;
+	}
+
+	@Override
+	public Integer calcularDescuento(Integer cantidad) throws SQLException, ClassNotFoundException, NamingException {
+		
+		String sql = "SELECT descuento FROM descuentos WHERE cantidad <= ? ORDER BY cantidad DESC LIMIT 1 ";
+		
+		Connection c = DBUtils.conectaBBDD();
+		PreparedStatement ps = c.prepareStatement(sql);
+		
+		ps.setInt(1, cantidad);
+		
+		ResultSet rs = ps.executeQuery();
+		System.out.println(ps.toString());
+		
+		Integer descuento = 0;
+		
+		if(rs.next()) {
+			descuento = rs.getInt(1);
+		}
+		
+		
+		return descuento;
+	}
+	
 }

@@ -121,10 +121,25 @@ public class PedidosController {
 		return "actualizarPedidos";
 	}
 
+	@GetMapping("insertarpedido")
+	public String getInsertarPedidos(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
+
+		List<CombosDTO> listadoClientes = combos.recuperarComboCliente();
+		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
+		model.addAttribute("combosCliente", listadoClientes);
+		model.addAttribute("combosProducto", listadoProductos);
+		return "insertarPedido";
+	}
+	
 	@PostMapping("calculaprecio")
-	public @ResponseBody Double calculaPrecio(ModelMap model, @RequestBody ClienteProductoDTO clienteproducto) {
-		System.out.println(clienteproducto.getCliente() + "," + clienteproducto.getProducto());
-		return 3.0;
+	public @ResponseBody Double calculaPrecio(ModelMap model, @RequestBody ClienteProductoDTO clienteproducto) throws ClassNotFoundException, SQLException, NamingException {
+
+		Double precioBase = pedidosDAO.obtenerPrecio(clienteproducto.getCliente());
+		Integer descuento = pedidosDAO.calcularDescuento(clienteproducto.getCliente());
+		
+		
+		
+		return precioBase * descuento / 100;
 		
 	}
 //	@PostMapping("dopedido")

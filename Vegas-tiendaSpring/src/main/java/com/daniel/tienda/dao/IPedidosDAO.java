@@ -13,5 +13,10 @@ public interface IPedidosDAO {
 			throws SQLException, ClassNotFoundException, NamingException;
 	
 	public Integer actualizarPedidos(String id, String id_cliente, String id_producto, String id_detalle, String cantidad, String precio,
-			String estado) throws SQLException, ClassNotFoundException, NamingException ;
+			String estado) throws SQLException, ClassNotFoundException, NamingException;
+	
+	public Double obtenerPrecio(Integer id_cliente) throws SQLException, ClassNotFoundException, NamingException;
+	
+	public Integer calcularDescuento(Integer descuento)throws SQLException, ClassNotFoundException, NamingException;
+	
 }

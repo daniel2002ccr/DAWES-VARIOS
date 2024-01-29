@@ -31,6 +31,16 @@ public class PedidosServicio implements IPedidosServicio {
 		// TODO Auto-generated method stub
 		return pedidosDAO.actualizarPedidos(id, id_cliente, id_producto, id_detalle, cantidad, precio, estado);
 	}
+	@Override
+	public Double obtenerPrecio(Integer id_cliente) throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return pedidosDAO.obtenerPrecio(id_cliente);
+	}
+	@Override
+	public Integer calcularDescuento(Integer cantidad) throws SQLException, ClassNotFoundException, NamingException {
+		// TODO Auto-generated method stub
+		return pedidosDAO.calcularDescuento(cantidad);
+	}
 	
 
 }
