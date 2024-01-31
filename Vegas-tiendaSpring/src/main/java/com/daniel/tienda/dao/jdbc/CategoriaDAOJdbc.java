@@ -15,7 +15,7 @@ import com.daniel.tienda.dao.ICategoriaDAO;
 import com.daniel.tienda.dtos.CategoriaDTO;
 import com.daniel.tienda.utils.DBUtils;
 
-@Component
+@Component("JDBCImpl")
 public class CategoriaDAOJdbc implements ICategoriaDAO {
 
 	@Override

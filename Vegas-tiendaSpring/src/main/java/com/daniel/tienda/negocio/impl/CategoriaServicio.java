@@ -7,6 +7,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.ICategoriaDAO;
@@ -20,6 +21,7 @@ import com.daniel.tienda.negocio.ICategoriaServicio;
 public class CategoriaServicio implements ICategoriaServicio{
 	
 	@Autowired
+	@Qualifier("HibernateImpl")
 	ICategoriaDAO categoriaDAO;
 
 	@Override
