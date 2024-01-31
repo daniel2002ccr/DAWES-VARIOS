@@ -21,7 +21,7 @@ import com.daniel.tienda.negocio.ICategoriaServicio;
 public class CategoriaServicio implements ICategoriaServicio{
 	
 	@Autowired
-	@Qualifier("HibernateImpl")
+	@Qualifier("CategoriaHibernateImpl")
 	ICategoriaDAO categoriaDAO;
 
 	@Override

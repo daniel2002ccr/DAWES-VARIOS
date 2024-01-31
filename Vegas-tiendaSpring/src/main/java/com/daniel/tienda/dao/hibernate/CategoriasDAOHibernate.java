@@ -15,7 +15,7 @@ import com.daniel.tienda.dtos.CategoriaDTO;
 import com.daniel.tienda.entities.CategoriaEntity;
 import com.daniel.tienda.utils.DBUtils;
 
-@Component("HibernateImpl")
+@Component("CategoriaHibernateImpl")
 public class CategoriasDAOHibernate implements ICategoriaDAO{
 
 	@Override
@@ -67,13 +67,36 @@ public class CategoriasDAOHibernate implements ICategoriaDAO{
 	@Override
 	public Integer actualizarCategoria(String id, String nombre, String descripcion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		SessionFactory factory = DBUtils.creadorSession();
+		Session s = factory.getCurrentSession();
+		s.beginTransaction();
+		
+		CategoriaEntity ce = new CategoriaEntity(Integer.parseInt(id), nombre, descripcion, Integer.parseInt(activo));
+		
+		s.merge(ce);
+		s.getTransaction().commit();
+		s.close();
+		
+		Integer idPk = ce.getId();
+		return idPk;
 	}
 
 	@Override
 	public Integer borrarCategoria(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
+
+		SessionFactory factory = DBUtils.creadorSession();
+		Session s = factory.getCurrentSession();
+		s.beginTransaction();
+		
+		CategoriaEntity ce = s.find(CategoriaEntity.class, Integer.parseInt(id));
+		
+		ce.setActivo(0);
+		
+		s.merge(ce);
+		s.getTransaction().commit();
+		s.close();
+		
 		return null;
 	}
 

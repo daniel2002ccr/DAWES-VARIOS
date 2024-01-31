@@ -16,7 +16,7 @@ import com.daniel.tienda.dtos.ClientesDTO;
 import com.daniel.tienda.dtos.ProductoDTO;
 import com.daniel.tienda.utils.DBUtils;
 
-@Component
+@Component("ClienteJDBCImpl")
 public class ClientesDAOJdbc implements IClientesDAO{
 
 	@Override

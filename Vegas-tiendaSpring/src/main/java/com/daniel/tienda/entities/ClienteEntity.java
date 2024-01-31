@@ -42,6 +42,88 @@ public class ClienteEntity {
     @Column(name = "activo")
     private Integer activo;
 
+	public ClienteEntity(int id, String nombre, String correoElectronico, String password, Date fechaRegistro,
+			Integer idPoblacion, Integer activo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.correoElectronico = correoElectronico;
+		this.password = password;
+		this.fechaRegistro = fechaRegistro;
+		this.idPoblacion = idPoblacion;
+		this.activo = activo;
+	}
+
+	public ClienteEntity(String nombre, String correoElectronico, Integer idPoblacion, Integer activo) {
+		super();
+		this.nombre = nombre;
+		this.correoElectronico = correoElectronico;
+		this.idPoblacion = idPoblacion;
+		this.activo = activo;
+	}
+
+	public ClienteEntity() {
+		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Integer getIdPoblacion() {
+		return idPoblacion;
+	}
+
+	public void setIdPoblacion(Integer idPoblacion) {
+		this.idPoblacion = idPoblacion;
+	}
+
+	public Integer getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Integer activo) {
+		this.activo = activo;
+	}
+    
+    
+
     // ...otros campos...
 
 //    @OneToMany(mappedBy = "cliente")

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.jdbc.ClientesDAOJdbc;
@@ -16,6 +17,7 @@ import com.daniel.tienda.negocio.IClientesServicio;
 public class ClientesServicio implements IClientesServicio{
 
 	@Autowired
+	@Qualifier("ClienteHibernateImpl")
 	ClientesDAOJdbc clientesDAO;
 	@Override
 	public List<ClientesDTO> buscarClientes(String id, String nombre, String correo, String poblacion, String activo)

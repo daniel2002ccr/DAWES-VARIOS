@@ -18,6 +18,7 @@ import com.daniel.tienda.dao.IClientesDAO;
 import com.daniel.tienda.dtos.CategoriaDTO;
 import com.daniel.tienda.dtos.ClientesDTO;
 import com.daniel.tienda.dtos.CombosDTO;
+import com.daniel.tienda.negocio.IClientesServicio;
 import com.daniel.tienda.negocio.ICombosServicio;
 
 @Controller
@@ -28,7 +29,7 @@ public class ClientesController {
 	ICombosServicio combosServicio;
 
 	@Autowired
-	IClientesDAO clientesDAO;
+	IClientesServicio clientesDAO;
 
 	@GetMapping("listadoclientes")
 	public String getListadoProveedores(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
@@ -43,14 +44,14 @@ public class ClientesController {
 	@PostMapping("listadoclientes")
 	public String buscarClientes(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
 			@RequestParam("correo") String correo, @RequestParam("poblacion") String poblacion,
-			@RequestParam(value = "activo", required = false) String activo, ModelMap model)
+			@RequestParam(value = "activo", required = false) String activo, @RequestParam("fecha") String fecha, ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
 
 		activo = (activo != null) ? "1" : "0";
-
+		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
 
-		model.addAttribute("combosPoblacion", listadoPoblacion);
+		model.addAttribute("comboPoblacion", listadoPoblacion);
 		List<ClientesDTO> listadoClientes = clientesDAO.buscarClientes(id, nombre, correo, poblacion, activo);
 
 		model.addAttribute("lista", listadoClientes);
