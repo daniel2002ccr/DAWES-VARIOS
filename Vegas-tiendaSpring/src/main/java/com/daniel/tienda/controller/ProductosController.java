@@ -134,6 +134,11 @@ public class ProductosController {
 	public String actualizarCategoria(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
 			@RequestParam("descripcion")String descripcion, @RequestParam("precio")String precio,@RequestParam("cantidadStock")String cantidadStock, @RequestParam("categorias")String id_categoria, @RequestParam("proveedores") String id_proveedor, ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
 		
+		List<CombosDTO> listaCategorias = combosServicio.recuperarComboCategoria();
+		List <CombosDTO> listaProveedores = combosServicio.recuperarComboProveedores();
+		
+		model.addAttribute("combosCategoria", listaCategorias);
+		model.addAttribute("combosProveedor", listaProveedores);
 		
 		precio = (precio == "") ? "0":precio;
 		cantidadStock = (cantidadStock == "") ? "0":cantidadStock;

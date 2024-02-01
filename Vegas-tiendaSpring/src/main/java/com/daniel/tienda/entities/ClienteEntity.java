@@ -1,27 +1,26 @@
 package com.daniel.tienda.entities;
 
 
-import java.util.Date;
-import java.util.Set;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "clientes")
 public class ClienteEntity {
-	
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Cliente")
-    private int id;
+    private Integer id;
 
     @Column(name = "Nombre", nullable = false)
     private String nombre;
@@ -32,45 +31,53 @@ public class ClienteEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "FechaRegistro")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRegistro;
-
-    @Column(name = "ID_Poblacion")
-    private Integer idPoblacion;
+    @ManyToOne
+    @JoinColumn(name = "id_poblacion")
+    private PoblacionEntity poblacion;
 
     @Column(name = "activo")
     private Integer activo;
 
-	public ClienteEntity(int id, String nombre, String correoElectronico, String password, Date fechaRegistro,
-			Integer idPoblacion, Integer activo) {
+	public ClienteEntity(Integer id, String nombre, String correoElectronico, String password,
+			PoblacionEntity poblacion, Integer activo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.correoElectronico = correoElectronico;
 		this.password = password;
-		this.fechaRegistro = fechaRegistro;
-		this.idPoblacion = idPoblacion;
-		this.activo = activo;
-	}
-
-	public ClienteEntity(String nombre, String correoElectronico, Integer idPoblacion, Integer activo) {
-		super();
-		this.nombre = nombre;
-		this.correoElectronico = correoElectronico;
-		this.idPoblacion = idPoblacion;
+		this.poblacion = poblacion;
 		this.activo = activo;
 	}
 
 	public ClienteEntity() {
 		super();
 	}
+	
+	
 
-	public int getId() {
+	public ClienteEntity(Integer id, String nombre, String correoElectronico, PoblacionEntity poblacion,
+			Integer activo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.correoElectronico = correoElectronico;
+		this.poblacion = poblacion;
+		this.activo = activo;
+	}
+
+	public ClienteEntity(String nombre, String correoElectronico, PoblacionEntity poblacion, Integer activo) {
+		super();
+		this.nombre = nombre;
+		this.correoElectronico = correoElectronico;
+		this.poblacion = poblacion;
+		this.activo = activo;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -98,20 +105,12 @@ public class ClienteEntity {
 		this.password = password;
 	}
 
-	public Date getFechaRegistro() {
-		return fechaRegistro;
+	public PoblacionEntity getPoblacion() {
+		return poblacion;
 	}
 
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-
-	public Integer getIdPoblacion() {
-		return idPoblacion;
-	}
-
-	public void setIdPoblacion(Integer idPoblacion) {
-		this.idPoblacion = idPoblacion;
+	public void setPoblacion(PoblacionEntity poblacion) {
+		this.poblacion = poblacion;
 	}
 
 	public Integer getActivo() {
@@ -121,6 +120,7 @@ public class ClienteEntity {
 	public void setActivo(Integer activo) {
 		this.activo = activo;
 	}
+
     
     
 

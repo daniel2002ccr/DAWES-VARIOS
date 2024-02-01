@@ -6,9 +6,11 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.IProductosDAO;
+import com.daniel.tienda.dao.hibernate.ProductosDAOHibernate;
 import com.daniel.tienda.dao.jdbc.ProductosDAO;
 import com.daniel.tienda.dtos.ProductoDTO;
 import com.daniel.tienda.negocio.IProductoServicio;
@@ -17,7 +19,8 @@ import com.daniel.tienda.negocio.IProductoServicio;
 public class ProductoServicio implements IProductoServicio{
 	
 	@Autowired
-	IProductosDAO productosDAO;
+	@Qualifier("ProductosHibernateImpl")
+	ProductosDAOHibernate productosDAO;
 
 	@Override
 	public List<ProductoDTO> buscarProducto(String id, String nombre, String descripcion, String precio,

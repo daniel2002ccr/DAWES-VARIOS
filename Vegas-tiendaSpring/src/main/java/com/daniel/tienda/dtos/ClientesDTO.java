@@ -6,6 +6,7 @@ public class ClientesDTO {
 	private String nombre;
 	private String correo;
 	private String poblacion;
+	private Integer id_poblacion;
 	private Integer activo;
 
 	public ClientesDTO(Integer id, String nombre, String correo, String poblacion, Integer activo) {
@@ -16,6 +17,19 @@ public class ClientesDTO {
 		this.poblacion = poblacion;
 		this.activo = activo;
 	}
+	
+
+	public ClientesDTO(Integer id, String nombre, String correo, String poblacion, Integer id_poblacion,
+			Integer activo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.poblacion = poblacion;
+		this.id_poblacion = id_poblacion;
+		this.activo = activo;
+	}
+
 
 	public Integer getId() {
 		return id;
@@ -55,6 +69,16 @@ public class ClientesDTO {
 
 	public void setActivo(Integer activo) {
 		this.activo = activo;
+	}
+
+
+	public Integer getId_poblacion() {
+		return id_poblacion;
+	}
+
+
+	public void setId_poblacion(Integer id_poblacion) {
+		this.id_poblacion = id_poblacion;
 	}
 
 }

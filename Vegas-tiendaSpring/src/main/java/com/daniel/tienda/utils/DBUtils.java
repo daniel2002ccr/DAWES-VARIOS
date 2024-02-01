@@ -15,7 +15,7 @@ public class DBUtils {
 	private static SessionFactory sessionFactory;
 	public static Connection conectaBBDD() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String urlDB = "jdbc:mysql://localhost:3306/tienda";
+		String urlDB = "jdbc:mysql://localhost:3306/tienda?serverTimezone=UTC";
 		String user = "root";
 		String pass = "PracticaRoot";
 		Connection connection = DriverManager.getConnection(urlDB, user, pass);

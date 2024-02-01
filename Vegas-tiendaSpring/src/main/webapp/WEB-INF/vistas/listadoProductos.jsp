@@ -35,11 +35,13 @@
 			<label for = "cantidadStock">Cantidad en stock</label>
 			<input type="text" id="cantidadStock" name="cantidadStock">
 			<select name="categorias" id ="categorias" form ="formulario">
+			<option value="" selected>Escoja una categoria</option>
 			<c:forEach items="${combosCategoria}" var="categoria">
 			<option value="${categoria.id}">${categoria.nombre}</option>
 			</c:forEach>
 			</select>
 			<select name="proveedores" id ="proveedores" form ="formulario">
+			<option value="" selected>Escoja un proveedor</option>
 			<c:forEach items="${combosProveedor}" var="proveedor">
 			<option value="${proveedor.id}">${proveedor.nombre}</option>
 			</c:forEach>

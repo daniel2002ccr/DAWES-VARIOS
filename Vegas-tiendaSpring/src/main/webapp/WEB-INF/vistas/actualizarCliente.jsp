@@ -83,7 +83,7 @@
 					<c:forEach items="${combosPoblacion}" var="poblacion">
 					<option value="${poblacion.id}">${poblacion.nombre}</option>
 					</c:forEach>
-					<option value="${poblacion.id}" selected>${cliente.poblacion}</option>
+					<option value="${cliente.id}" selected>${cliente.poblacion}</option>
 					</select> <br> 
 
 					<label for="activo"> Activo </label>

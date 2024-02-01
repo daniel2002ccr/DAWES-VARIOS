@@ -36,7 +36,7 @@ public class ClientesController {
 
 		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
 
-		model.addAttribute("combosPoblacion", listadoPoblacion);
+		model.addAttribute("comboPoblacion", listadoPoblacion);
 
 		return "listadoClientes";
 	}
@@ -44,11 +44,10 @@ public class ClientesController {
 	@PostMapping("listadoclientes")
 	public String buscarClientes(@RequestParam("id") String id, @RequestParam("nombre") String nombre,
 			@RequestParam("correo") String correo, @RequestParam("poblacion") String poblacion,
-			@RequestParam(value = "activo", required = false) String activo, @RequestParam("fecha") String fecha, ModelMap model)
+			@RequestParam(value = "activo", required = false) String activo, ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
 
 		activo = (activo != null) ? "1" : "0";
-		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
 
 		model.addAttribute("comboPoblacion", listadoPoblacion);

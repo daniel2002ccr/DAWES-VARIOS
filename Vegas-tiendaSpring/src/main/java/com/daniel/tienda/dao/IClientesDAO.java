@@ -9,10 +9,11 @@ import com.daniel.tienda.dtos.ClientesDTO;
 
 public interface IClientesDAO {
 
-	public List<ClientesDTO> buscarClientes(String id, String nombre, String correo, String poblacion, String activo)
+	public List<ClientesDTO> buscarClientes(String idCliente, String nombre, String correoElectronico,
+            String nombrePoblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException;
 
-	public Integer insertarCliente(String nombre, String correo, String poblacion, String activo)
+	public Integer insertarCliente(String nombre, String correoElectronico, String nombrePoblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException;
 
 	public Integer actualizarCliente(String id, String nombre, String correo, String poblacion, String activo)

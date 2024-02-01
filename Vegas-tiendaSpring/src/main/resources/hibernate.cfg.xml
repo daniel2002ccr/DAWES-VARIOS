@@ -29,6 +29,8 @@
 			<mapping class="com.daniel.tienda.entities.CategoriaEntity"/>
 			<mapping class="com.daniel.tienda.entities.ClienteEntity"/>
 			<mapping class="com.daniel.tienda.entities.ProductoEntity"/>
+			<mapping class="com.daniel.tienda.entities.ProveedoresEntity"/>
+			<mapping class="com.daniel.tienda.entities.PoblacionEntity"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -20,7 +20,7 @@ public class ProductoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Producto")
-    private int id;
+    private Integer id;
 
     @Column(name = "Nombre", nullable = false)
     private String nombre;
@@ -29,7 +29,7 @@ public class ProductoEntity {
     private String descripcion;
 
     @Column(name = "Precio")
-    private BigDecimal precio;
+    private Double precio;
 
     @Column(name = "CantidadEnStock")
     private Integer cantidadEnStock;
@@ -38,12 +38,95 @@ public class ProductoEntity {
     @JoinColumn(name = "ID_Categoria")
     private CategoriaEntity categoria;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_Proveedor")
+    private ProveedoresEntity proveedores;
 
+	public ProductoEntity(Integer id, String nombre, String descripcion, Double precio, Integer cantidadEnStock,
+			CategoriaEntity categoria, ProveedoresEntity proveedores) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.cantidadEnStock = cantidadEnStock;
+		this.categoria = categoria;
+		this.proveedores = proveedores;
+	}
 
-//    @ManyToOne
-//    @JoinColumn(name = "ID_Proveedor")
-//    private Proveedor proveedor;
-//
+	public ProductoEntity() {
+		super();
+	}
+
+	public ProductoEntity(String nombre, String descripcion, Double precio, Integer cantidadEnStock,
+			CategoriaEntity categoria, ProveedoresEntity proveedores) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.cantidadEnStock = cantidadEnStock;
+		this.categoria = categoria;
+		this.proveedores = proveedores;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+
+	public Integer getCantidadEnStock() {
+		return cantidadEnStock;
+	}
+
+	public void setCantidadEnStock(Integer cantidadEnStock) {
+		this.cantidadEnStock = cantidadEnStock;
+	}
+
+	public CategoriaEntity getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaEntity categoria) {
+		this.categoria = categoria;
+	}
+
+	public ProveedoresEntity getProveedores() {
+		return proveedores;
+	}
+
+	public void setProveedores(ProveedoresEntity proveedores) {
+		this.proveedores = proveedores;
+	}
+    
+    
+
 //    @OneToMany(mappedBy = "producto")
 //    private Set<Peticion> peticiones;
 
