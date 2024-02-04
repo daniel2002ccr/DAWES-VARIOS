@@ -6,6 +6,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
@@ -19,34 +20,35 @@ public class ProveedoresServicio implements IProveedoresServicio{
 
 
 	@Autowired
-	ProveedoresDAO proveedoresDAO;
+	@Qualifier("ProveedoresHibernateImpl")
+	IProveedoresDAO proveedor;
 	
 	@Override
 	public List<ProveedoresDTO> buscarProveedores(String id, String nombre, String contacto, String telefono,
 			String correo, String direccion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return proveedoresDAO.buscarProveedores(id, nombre, contacto, telefono, correo, direccion, activo);
+		return proveedor.buscarProveedores(id, nombre, contacto, telefono, correo, direccion, activo);
 	}
 
 	@Override
 	public Integer insertarProveedor(String nombre, String contacto, String telefono, String correo, String direccion,
 			String activo) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return proveedoresDAO.insertarProveedor(nombre, contacto, telefono, correo, direccion, activo);
+		return proveedor.insertarProveedor(nombre, contacto, telefono, correo, direccion, activo);
 	}
 
 	@Override
 	public Integer actualizarProveedor(String id, String nombre, String contacto, String telefono, String correo,
 			String direccion, String activo) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return proveedoresDAO.actualizarProveedor(id, nombre, contacto, telefono, correo, direccion, activo);
+		return proveedor.actualizarProveedor(id, nombre, contacto, telefono, correo, direccion, activo);
 	}
 
 	@Override
 	public Integer borrarProveedor(String id) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return proveedoresDAO.borrarProveedor(id);
+		return proveedor.borrarProveedor(id);
 	}
 
 }
