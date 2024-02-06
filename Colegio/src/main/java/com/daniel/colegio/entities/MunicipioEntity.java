@@ -45,9 +45,16 @@ public class MunicipioEntity {
 
 	
 	
-	public MunicipioEntity(Integer codMunicipio) {
+//	public MunicipioEntity(Integer codMunicipio) {
+//		super();
+//		this.codMunicipio = codMunicipio;
+//	}
+
+
+
+	public MunicipioEntity(Integer idMunicipio) {
 		super();
-		this.codMunicipio = codMunicipio;
+		this.idMunicipio = idMunicipio;
 	}
 
 

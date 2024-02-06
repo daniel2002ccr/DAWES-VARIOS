@@ -17,7 +17,7 @@ import com.daniel.colegio.negocio.IAlumnosServicio;
 public class AlumnosServicio implements IAlumnosServicio{
 	
 	@Autowired
-	@Qualifier("HibernateImpl")
+	@Qualifier("AlumnosDAOImplSpringDataJPA")
 	AlumnosDAO alumnosDAO;
 	
 	

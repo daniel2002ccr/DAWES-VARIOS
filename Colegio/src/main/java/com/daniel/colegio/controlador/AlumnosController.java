@@ -6,6 +6,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class AlumnosController {
 	@Autowired
 	IAlumnosServicio alumnosServicio;
 	@Autowired
+	@Qualifier("combospringdatajpa")
 	ICombosDAO combosDAO;
 
 	@GetMapping("listaralumnos")
