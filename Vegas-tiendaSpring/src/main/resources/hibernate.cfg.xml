@@ -31,6 +31,8 @@
 			<mapping class="com.daniel.tienda.entities.ProductoEntity"/>
 			<mapping class="com.daniel.tienda.entities.ProveedoresEntity"/>
 			<mapping class="com.daniel.tienda.entities.PoblacionEntity"/>
+			<mapping class="com.daniel.tienda.entities.EstadoPedidosEntity"/>
+			<mapping class="com.daniel.tienda.entities.PeticionesEntity"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -57,7 +57,12 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>Colegio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+</dependencies>
 
 	<build>
 	 	<finalName>tienda</finalName>

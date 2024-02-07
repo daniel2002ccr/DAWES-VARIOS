@@ -6,8 +6,10 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.daniel.tienda.dao.IPeticionesDAO;
 import com.daniel.tienda.dao.jdbc.PeticionesDAO;
 import com.daniel.tienda.dtos.PeticionesDTO;
 import com.daniel.tienda.negocio.IPeticionesServicio;
@@ -16,7 +18,8 @@ import com.daniel.tienda.negocio.IPeticionesServicio;
 public class PeticionesServicio implements IPeticionesServicio{
 
 	@Autowired
-	PeticionesDAO peticionesDAO;
+	@Qualifier("PeticionesDAOHibernate")
+	IPeticionesDAO peticionesDAO;
 	
 	@Override
 	public List<PeticionesDTO> buscarPeticiones(String id, String id_cliente, String id_producto, String fecha,

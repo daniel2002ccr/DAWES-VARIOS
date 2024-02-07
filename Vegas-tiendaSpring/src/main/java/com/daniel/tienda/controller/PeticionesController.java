@@ -18,6 +18,7 @@ import com.daniel.tienda.dtos.ClientesDTO;
 import com.daniel.tienda.dtos.CombosDTO;
 import com.daniel.tienda.dtos.PeticionesDTO;
 import com.daniel.tienda.negocio.ICombosServicio;
+import com.daniel.tienda.negocio.IPeticionesServicio;
 
 @Controller
 @RequestMapping("/peticiones/")
@@ -27,7 +28,7 @@ public class PeticionesController {
 	ICombosServicio combos;
 	
 	@Autowired
-	IPeticionesDAO peticionesDAO;
+	IPeticionesServicio peticionesDAO;
 	
 	@GetMapping("listadopeticiones")
 	public String getListadoPeticiones(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
