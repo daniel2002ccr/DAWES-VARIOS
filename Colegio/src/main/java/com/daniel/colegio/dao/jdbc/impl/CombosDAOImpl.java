@@ -15,7 +15,7 @@ import com.daniel.colegio.dao.ICombosDAO;
 import com.daniel.colegio.dtos.ComboDTO;
 import com.daniel.colegio.utils.DBUtils;
 
-@Component
+@Component("combojdbc")
 public class CombosDAOImpl implements ICombosDAO{
 
 	@Override
