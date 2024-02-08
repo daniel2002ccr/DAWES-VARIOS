@@ -1,54 +1,55 @@
-package com.daniel.tienda.negocio.impl;
+package com.daniel.tienda.dao.springjpa;
 
 import java.sql.SQLException;
-
 import java.util.List;
 
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.ICategoriaDAO;
-import com.daniel.tienda.dao.ICombosDAO;
-import com.daniel.tienda.dao.jdbc.CategoriaDAOJdbc;
 import com.daniel.tienda.dtos.CategoriaDTO;
-import com.daniel.tienda.dtos.CombosDTO;
-import com.daniel.tienda.negocio.ICategoriaServicio;
+import com.daniel.tienda.entities.CategoriaEntity;
+import com.daniel.tienda.repositories.CategoriaRepository;
 
-@Component
-public class CategoriaServicio implements ICategoriaServicio{
-	
+@Component("CategoriaSpringJPA")
+public class CategoriaSpringJPA implements ICategoriaDAO{
+
 	@Autowired
-	@Qualifier("CategoriaSpringJPA")
-	ICategoriaDAO categoriaDAO;
-
+	CategoriaRepository categoria;
 	@Override
 	public List<CategoriaDTO> buscarCategoria(String id, String nombre, String descripcion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
-		
-		return categoriaDAO.buscarCategoria(id, nombre, descripcion, activo);
+		// TODO Auto-generated method stub
+		return categoria.buscarCategoria(id, nombre, descripcion, Integer.parseInt(activo));
 	}
 
 	@Override
 	public Integer insertarCategoria(String nombre, String descripcion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
 		
-		return categoriaDAO.insertarCategoria(nombre, descripcion, activo);
+		CategoriaEntity ce = new CategoriaEntity(nombre, descripcion, Integer.parseInt(activo));
+		categoria.save(ce);
+		return ce.getId();
 	}
 
 	@Override
 	public Integer actualizarCategoria(String id, String nombre, String descripcion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return categoriaDAO.actualizarCategoria(id, nombre, descripcion, activo);
+
+		CategoriaEntity ce = new CategoriaEntity(Integer.parseInt(id), nombre, descripcion, Integer.parseInt(activo));
+		categoria.save(ce);
+		return ce.getId();
 	}
 
 	@Override
 	public Integer borrarCategoria(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return categoriaDAO.borrarCategoria(id);
+
+		CategoriaEntity ce = categoria.findById(Integer.parseInt(id)).get();
+		ce.setActivo(0);
+		categoria.save(ce);
+		return ce.getId();
 	}
 
 }

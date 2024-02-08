@@ -1,4 +1,4 @@
-package com.daniel.tienda.negocio.impl;
+package com.daniel.tienda.dao.springjpa;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,42 +6,50 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daniel.tienda.dao.IProductosDAO;
-import com.daniel.tienda.dao.hibernate.ProductosDAOHibernate;
-import com.daniel.tienda.dao.jdbc.ProductosDAO;
 import com.daniel.tienda.dtos.ProductoDTO;
-import com.daniel.tienda.negocio.IProductoServicio;
+import com.daniel.tienda.entities.CategoriaEntity;
+import com.daniel.tienda.entities.ProductoEntity;
+import com.daniel.tienda.entities.ProveedoresEntity;
+import com.daniel.tienda.repositories.CategoriaRepository;
+import com.daniel.tienda.repositories.ProductoRepository;
+import com.daniel.tienda.repositories.ProveedoresRepository;
 
-@Component
-public class ProductoServicio implements IProductoServicio{
-	
+@Component("ProductoSpringJPA")
+public class ProdutoSpringJPA implements IProductosDAO{
+
 	@Autowired
-	@Qualifier("ProductoSpringJPA")
-	IProductosDAO productosDAO;
-
+	CategoriaRepository categoria;
+	@Autowired
+	ProveedoresRepository proveedores;
+	@Autowired
+	ProductoRepository producto;
 	@Override
 	public List<ProductoDTO> buscarProducto(String id, String nombre, String descripcion, String precio,
 			String cantidadStock, String id_categoria, String id_proveedor)
 			throws SQLException, ClassNotFoundException, NamingException {
-		
-		return productosDAO.buscarProducto(id, nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Integer insertarProducto(String nombre, String descripcion, String precio, String cantidadStock,
 			String id_categoria, String id_proveedor) throws SQLException, ClassNotFoundException, NamingException {
 		
-		return productosDAO.insertarProducto(nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
+		CategoriaEntity ce = categoria.findById(Integer.parseInt(id_categoria)).get();
+		ProveedoresEntity pe = proveedores.findById(Integer.parseInt(id_proveedor)).get();
+		ProductoEntity pre = new ProductoEntity(nombre, descripcion, Double.parseDouble(precio), Integer.parseInt(cantidadStock), ce, pe);
+		producto.save(pre);
+		return pre.getId();
 	}
 
 	@Override
 	public Integer actualizarProducto(String id, String nombre, String descripcion, String precio, String cantidadStock,
 			String id_categoria, String id_proveedor) throws SQLException, ClassNotFoundException, NamingException {
 		// TODO Auto-generated method stub
-		return productosDAO.actualizarProducto(id, nombre, descripcion, precio, cantidadStock, id_categoria, id_proveedor);
+		return null;
 	}
 
 }
