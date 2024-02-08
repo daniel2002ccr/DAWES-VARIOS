@@ -1,6 +1,8 @@
 package com.daniel.tienda.dao.hibernate;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -87,7 +89,12 @@ public class PeticionesDAOHibernate implements IPeticionesDAO{
         ProductoEntity pre = s.find(ProductoEntity.class, Integer.parseInt(id_producto));
         EstadoPedidosEntity ep = s.find(EstadoPedidosEntity.class, Integer.parseInt(estado));
         
+        String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        
+        
         PeticionesEntity pe = new PeticionesEntity(ce, pre, Integer.parseInt(cantidad), ep);
+        
+        pe.setFecha(fecha);
        
         s.persist(pe);
 
@@ -102,13 +109,46 @@ public class PeticionesDAOHibernate implements IPeticionesDAO{
 	@Override
 	public Integer actualizarPeticion(String id, String id_cliente, String id_producto, String cantidad, String estado)
 			throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
-		return null;
+
+		SessionFactory factory = DBUtils.creadorSession();
+        Session s = factory.getCurrentSession();
+        s.beginTransaction();
+        
+        ClienteEntity ce = s.find(ClienteEntity.class, Integer.parseInt(id_cliente));
+        ProductoEntity pre = s.find(ProductoEntity.class, Integer.parseInt(id_producto));
+        EstadoPedidosEntity ep = s.find(EstadoPedidosEntity.class, Integer.parseInt(estado));
+        
+        String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        
+        PeticionesEntity pe = new PeticionesEntity(Integer.parseInt(id),ce, pre, Integer.parseInt(cantidad), ep);
+        
+        pe.setFecha(fecha);
+        
+        s.merge(pe);
+        s.getTransaction().commit();
+        s.close();
+        
+        Integer idpk = pe.getId();
+        
+		return idpk;
 	}
 
 	@Override
 	public Integer borrarPeticion(String id) throws SQLException, ClassNotFoundException, NamingException {
-		// TODO Auto-generated method stub
+		
+		SessionFactory factory = DBUtils.creadorSession();
+        Session s = factory.getCurrentSession();
+        s.beginTransaction();
+        
+        PeticionesEntity pe = s.find(PeticionesEntity.class, Integer.parseInt(id));
+        
+        EstadoPedidosEntity ep = s.find(EstadoPedidosEntity.class, 5);
+        
+        pe.setEstados(ep);
+        s.merge(pe);
+        
+        s.getTransaction().commit();
+        s.close();
 		return null;
 	}
 

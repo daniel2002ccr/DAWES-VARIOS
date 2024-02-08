@@ -62,6 +62,17 @@ public class PeticionesEntity {
 	}
 
 
+	public PeticionesEntity(Integer id, ClienteEntity cliente, ProductoEntity producto, Integer cantidad,
+			EstadoPedidosEntity estados) {
+		super();
+		this.id = id;
+		this.cliente = cliente;
+		this.producto = producto;
+		this.cantidad = cantidad;
+		this.estados = estados;
+	}
+
+
 	public PeticionesEntity() {
 		super();
 	}

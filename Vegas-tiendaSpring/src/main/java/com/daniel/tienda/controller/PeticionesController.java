@@ -54,6 +54,7 @@ public class PeticionesController {
 		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
 		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
 		
+		cantidad = (cantidad == "") ? "0" : cantidad;
 		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
@@ -124,6 +125,7 @@ public class PeticionesController {
 		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
 		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
 		
+		cantidad = (cantidad == "") ? "0" : cantidad;
 		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
@@ -184,6 +186,7 @@ public class PeticionesController {
 		List<CombosDTO> listadoProductos = combos.recuperarComboProducto();
 		List<CombosDTO> listadoEstados = combos.recuperarComboEstado();
 		
+		cantidad = (cantidad == "") ? "0" : cantidad;
 		fecha = (fecha == "") ? "1970-01-01" : fecha;
 		model.addAttribute("combosCliente", listadoClientes);
 		model.addAttribute("combosProducto", listadoProductos);
