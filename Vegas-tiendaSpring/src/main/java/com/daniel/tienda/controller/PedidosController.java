@@ -6,7 +6,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,20 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.daniel.tienda.dao.ICombosDAO;
 import com.daniel.tienda.dao.IPedidosDAO;
 import com.daniel.tienda.dtos.ClienteProductoDTO;
 import com.daniel.tienda.dtos.CombosDTO;
 
 import com.daniel.tienda.dtos.PedidosDTO;
 
-import com.daniel.tienda.negocio.ICombosServicio;
+
 
 @Controller
 @RequestMapping("/pedidos/")
 public class PedidosController {
 
 	@Autowired
-	ICombosServicio combos;
+	@Qualifier("combospringdatajpa")
+	ICombosDAO combos;
 
 	@Autowired
 	IPedidosDAO pedidosDAO;

@@ -3,14 +3,15 @@ package com.daniel.tienda.dtos;
 public class PeticionesDTO {
 
 	private Integer id;
-	private Integer id_cliente;
 	private String nombre_cliente;
-	private Integer id_producto;
 	private String nombre_producto;
 	private String fecha;
 	private Integer cantidad;
-	private Integer id_estado;
 	private String nombre_estado;
+	private Integer id_cliente;
+	private Integer id_estado;
+	private Integer id_producto;
+	
 
 	public PeticionesDTO(Integer id, Integer id_cliente, String nombre_cliente, Integer id_producto,
 			String nombre_producto, String fecha, Integer cantidad, Integer id_estado, String nombre_estado) {
@@ -25,6 +26,22 @@ public class PeticionesDTO {
 		this.id_estado = id_estado;
 		this.nombre_estado = nombre_estado;
 	}
+	
+
+	public PeticionesDTO(Integer id, String nombre_cliente, String nombre_producto, String fecha, Integer cantidad,
+			String nombre_estado, Integer id_cliente, Integer id_estado, Integer id_producto) {
+		super();
+		this.id = id;
+		this.nombre_cliente = nombre_cliente;
+		this.nombre_producto = nombre_producto;
+		this.fecha = fecha;
+		this.cantidad = cantidad;
+		this.nombre_estado = nombre_estado;
+		this.id_cliente = id_cliente;
+		this.id_estado = id_estado;
+		this.id_producto = id_producto;
+	}
+
 
 	public Integer getId() {
 		return id;

@@ -18,7 +18,7 @@ import com.daniel.tienda.negocio.IPeticionesServicio;
 public class PeticionesServicio implements IPeticionesServicio{
 
 	@Autowired
-	@Qualifier("PeticionesDAOHibernate")
+	@Qualifier("peticionesSpringJPA")
 	IPeticionesDAO peticionesDAO;
 	
 	@Override

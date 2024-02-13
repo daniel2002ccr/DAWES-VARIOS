@@ -60,7 +60,7 @@
 					method="POST">
 
 			<label for = "id">ID Peticion</label>
-			<input type="text" id="id" name="id" value="${peticion.id}">
+			<input type="text" id="id" name="id" value="${peticion.id}" readonly>
 			<label for = "cliente">Cliente</label>
 			<select name="cliente" id ="cliente"> 
 			<c:forEach items="${combosCliente}" var="cliente">

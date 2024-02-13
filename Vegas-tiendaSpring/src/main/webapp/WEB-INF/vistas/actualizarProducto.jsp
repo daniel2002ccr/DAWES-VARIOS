@@ -77,7 +77,7 @@
 
 					
 				<label for="id">ID Producto</label> 
-				<input type="text" id="id" name="id" value="${producto.id}"> 
+				<input type="text" id="id" name="id" value="${producto.id}" readonly> 
 				<label for="nombre">Nombre</label> 
 				<input type="text" id="nombre" name="nombre" value="${producto.nombre}"> 
 				<label for="descripcion">Descripcion</label> 

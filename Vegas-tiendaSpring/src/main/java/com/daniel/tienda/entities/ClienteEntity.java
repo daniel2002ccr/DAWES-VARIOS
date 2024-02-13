@@ -37,6 +37,11 @@ public class ClienteEntity {
 
     @Column(name = "activo")
     private Integer activo;
+    
+    public ClienteEntity(Integer id) {
+		super();
+		this.id = id;
+	}
 
 	public ClienteEntity(Integer id, String nombre, String correoElectronico, String password,
 			PoblacionEntity poblacion, Integer activo) {
@@ -53,6 +58,8 @@ public class ClienteEntity {
 		super();
 	}
 	
+	
+
 	
 
 	public ClienteEntity(Integer id, String nombre, String correoElectronico, PoblacionEntity poblacion,

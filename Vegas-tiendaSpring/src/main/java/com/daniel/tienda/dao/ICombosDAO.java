@@ -10,7 +10,7 @@ import com.daniel.tienda.dtos.CombosDTO;
 
 public interface ICombosDAO {
 	public List<CombosDTO> recuperarComboCategoria() throws SQLException, ClassNotFoundException, NamingException;
-	public List<CombosDTO> recuperarComboProovedor() throws SQLException, ClassNotFoundException, NamingException;
+	public List<CombosDTO> recuperarComboProveedores() throws SQLException, ClassNotFoundException, NamingException;
 	public List<CombosDTO> recuperarComboPoblacion() throws SQLException, ClassNotFoundException, NamingException;
 	public List<CombosDTO> recuperarComboCliente() throws SQLException, ClassNotFoundException, NamingException;
 	public List<CombosDTO> recuperarComboProducto() throws SQLException, ClassNotFoundException, NamingException;

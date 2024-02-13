@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.daniel.tienda.dao.IClientesDAO;
 import com.daniel.tienda.dao.hibernate.ClientesDAOHibernate;
 import com.daniel.tienda.dtos.ClientesDTO;
 import com.daniel.tienda.negocio.IClientesServicio;
@@ -17,8 +18,8 @@ import com.daniel.tienda.negocio.IClientesServicio;
 public class ClientesServicio implements IClientesServicio{
 
 	@Autowired
-	@Qualifier("ClienteHibernateImpl")
-	ClientesDAOHibernate clientesDAO;
+	@Qualifier("ClienteSpringJPA")
+	IClientesDAO clientesDAO;
 	@Override
 	public List<ClientesDTO> buscarClientes(String id, String nombre, String correo, String poblacion, String activo)
 			throws SQLException, ClassNotFoundException, NamingException {

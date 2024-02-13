@@ -46,11 +46,14 @@ public class ProveedoresEntity {
 		super();
 	}
 
-	public ProveedoresEntity(Integer idProveedor, String nombre) {
+	
+
+	public ProveedoresEntity(Integer idProveedor) {
 		super();
 		this.idProveedor = idProveedor;
-		this.nombre = nombre;
 	}
+
+
 
 	public ProveedoresEntity(Integer idProveedor, String nombre, String contacto, String telefono,
 			String correoElectronico, String direccion, Integer activo) {

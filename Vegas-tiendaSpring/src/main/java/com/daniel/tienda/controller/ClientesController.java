@@ -7,6 +7,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daniel.tienda.dao.IClientesDAO;
+import com.daniel.tienda.dao.ICombosDAO;
 import com.daniel.tienda.dtos.CategoriaDTO;
 import com.daniel.tienda.dtos.ClientesDTO;
 import com.daniel.tienda.dtos.CombosDTO;
 import com.daniel.tienda.negocio.IClientesServicio;
-import com.daniel.tienda.negocio.ICombosServicio;
+
 
 @Controller
 @RequestMapping("/clientes/")
 public class ClientesController {
 
 	@Autowired
-	ICombosServicio combosServicio;
+	@Qualifier("combospringdatajpa")
+	ICombosDAO combos;
 
 	@Autowired
 	IClientesServicio clientesDAO;
@@ -34,7 +37,7 @@ public class ClientesController {
 	@GetMapping("listadoclientes")
 	public String getListadoProveedores(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("comboPoblacion", listadoPoblacion);
 
@@ -48,7 +51,7 @@ public class ClientesController {
 			throws ClassNotFoundException, SQLException, NamingException {
 
 		activo = (activo != null) ? "1" : "0";
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("comboPoblacion", listadoPoblacion);
 		List<ClientesDTO> listadoClientes = clientesDAO.buscarClientes(id, nombre, correo, poblacion, activo);
@@ -62,7 +65,7 @@ public class ClientesController {
 	@GetMapping("insertarcliente")
 	public String getInsertarProveedor(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 
@@ -77,7 +80,7 @@ public class ClientesController {
 
 		activo = (activo != null) ? "1" : "0";
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 		Integer resultado = clientesDAO.insertarCliente(nombre, correo, poblacion, activo);
@@ -91,7 +94,7 @@ public class ClientesController {
 	public String getFormularioActualizarCliente(ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 
@@ -106,7 +109,7 @@ public class ClientesController {
 
 		activo = (activo != null) ? "1" : "0";
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 		List<ClientesDTO> listadoClientes = clientesDAO.buscarClientes(id, nombre, correo, poblacion, activo);
@@ -125,7 +128,7 @@ public class ClientesController {
 
 		activo = (activo != null) ? "1" : "0";
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 		Integer resultado = clientesDAO.actualizarCliente(id, nombre, correo, poblacion, activo);
@@ -139,7 +142,7 @@ public class ClientesController {
 	public String getFormularioBorrarCliente(ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 
@@ -154,7 +157,7 @@ public class ClientesController {
 
 		activo = (activo != null) ? "1" : "0";
 
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 
@@ -167,7 +170,7 @@ public class ClientesController {
 	@PostMapping("borrarcliente")
 	public String borrarAlumno(@RequestParam("id") String id, ModelMap model)
 			throws ClassNotFoundException, SQLException, NamingException {
-		List<CombosDTO> listadoPoblacion = combosServicio.recuperarComboPoblacion();
+		List<CombosDTO> listadoPoblacion = combos.recuperarComboPoblacion();
 
 		model.addAttribute("combosPoblacion", listadoPoblacion);
 		Integer resultado = clientesDAO.borrarCliente(id);
